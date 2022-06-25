@@ -1,8 +1,10 @@
 package co.com.sofkau.appagilismo.usuario.coleccion;
 
-import lombok.AllArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Document(collection = "usuarios")
 public class Usuario {
@@ -18,9 +20,6 @@ public class Usuario {
 
     @NotNull
     private String password;
-
-    @NotNull
-    private Set<String> proyectosAsociados;
 
 
     public Usuario() {
@@ -64,11 +63,5 @@ public class Usuario {
         this.password = password;
     }
 
-    public Set<String> getProyectosAsociados() {
-        return proyectosAsociados;
-    }
 
-    public void setProyectosAsociados(Set<String> proyectosAsociados) {
-        this.proyectosAsociados = proyectosAsociados;
-    }
 }

@@ -1,6 +1,6 @@
 package co.com.sofkau.appagilismo.usuario.dto;
 
-import org.springframework.data.mongodb.core.index.Indexed;
+import java.util.Set;
 
 public class UsuarioDTO {
 
@@ -18,6 +18,17 @@ public class UsuarioDTO {
 
 
     private Set<String> proyectosAsociados;
+
+    private Set<String> historiasDeUsuario;
+
+
+
+    public UsuarioDTO(String usuarioId,String nombreCompleto, String email, String password) {
+        this.usuarioId=usuarioId;
+        this.nombreCompleto = nombreCompleto;
+        this.email = email;
+        this.password = password;
+    }
 
     public UsuarioDTO(String nombreCompleto, String email, String password) {
         this.nombreCompleto = nombreCompleto;
@@ -63,5 +74,13 @@ public class UsuarioDTO {
 
     public void setProyectosAsociados(Set<String> proyectosAsociados) {
         this.proyectosAsociados = proyectosAsociados;
+    }
+
+    public Set<String> getHistoriasDeUsuario() {
+        return historiasDeUsuario;
+    }
+
+    public void setHistoriasDeUsuario(Set<String> historiasDeUsuario) {
+        this.historiasDeUsuario = historiasDeUsuario;
     }
 }

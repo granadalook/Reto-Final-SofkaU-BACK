@@ -1,2 +1,10 @@
-package co.com.sofkau.appagilismo.usuario.rutas.excepciones;public class ExcepcionBadRequest {
+package co.com.sofkau.appagilismo.usuario.rutas.excepciones;
+
+public class ExcepcionBadRequest extends RuntimeException{
+
+    private static final String DESCRIPCION = "Excepcion Bad Request (400)";
+
+    public ExcepcionBadRequest(String detail){
+        super(DESCRIPCION + ", " + detail);
+    }
 }

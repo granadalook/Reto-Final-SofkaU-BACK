@@ -13,7 +13,7 @@ public class MapperUsuario {
             usuario.setUsuarioId(id);
             usuario.setNombreCompleto(updateUsuario.getNombreCompleto());
             usuario.setEmail(updateUsuario.getEmail());
-            usuario.setPassword(updateUsuario.getPassword());
+            usuario.setPassword(updateUsuario.getEmail());
             return usuario;
         };
 

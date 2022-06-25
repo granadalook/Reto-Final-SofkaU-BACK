@@ -2,6 +2,7 @@ package co.com.sofkau.appagilismo.usuario.utilidades;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -10,12 +11,8 @@ import org.springframework.stereotype.Service;
 public class EnviarMail {
 
     private static final Logger log = LoggerFactory.getLogger(EnviarMail.class);
+    @Autowired
     private JavaMailSender enviarMail;
-
-
-    public EnviarMail(JavaMailSender enviarMail) {
-        this.enviarMail = enviarMail;
-    }
 
     public void enviarEmail(String email, String asunto, String cuerpoDelMensaje){
 

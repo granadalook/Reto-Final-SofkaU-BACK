@@ -3,8 +3,8 @@ package co.com.sofkau.appagilismo.usuario.coleccion;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.validation.constraints.NotNull;
-import java.util.Set;
 
 @Document(collection = "usuarios")
 public class Usuario {
@@ -62,6 +62,4 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
-
-
 }

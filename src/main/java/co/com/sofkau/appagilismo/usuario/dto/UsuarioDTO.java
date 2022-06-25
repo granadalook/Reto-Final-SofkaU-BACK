@@ -1,10 +1,12 @@
 package co.com.sofkau.appagilismo.usuario.dto;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class UsuarioDTO {
-
 
     private String usuarioId;
 
@@ -12,18 +14,19 @@ public class UsuarioDTO {
     private String nombreCompleto;
 
     @NotBlank
+    @Email
     private String email;
 
     @NotBlank
     private String password;
 
-    private Set<String> proyectosAsociados;
+    private List<String> proyectosAsociados;
 
-    private Set<String> historiasDeUsuario;
+    private List<String> historiasDeUsuario;
 
+    public UsuarioDTO() {}
 
-
-    public UsuarioDTO(String usuarioId,String nombreCompleto, String email, String password) {
+    public UsuarioDTO(String usuarioId, String nombreCompleto, String email, String password) {
         this.usuarioId=usuarioId;
         this.nombreCompleto = nombreCompleto;
         this.email = email;
@@ -34,6 +37,24 @@ public class UsuarioDTO {
         this.nombreCompleto = nombreCompleto;
         this.email = email;
         this.password = password;
+    }
+
+    public List<String> getProyectosAsociados() {
+        this.proyectosAsociados = Optional.ofNullable(proyectosAsociados).orElse(new ArrayList<>());
+        return proyectosAsociados;
+    }
+
+    public void setProyectosAsociados(List<String> proyectosAsociados) {
+        this.proyectosAsociados = proyectosAsociados;
+    }
+
+    public List<String> getHistoriasDeUsuario() {
+        this.historiasDeUsuario = Optional.ofNullable(historiasDeUsuario).orElse(new ArrayList<>());
+        return historiasDeUsuario;
+    }
+
+    public void setHistoriasDeUsuario(List<String> historiasDeUsuario) {
+        this.historiasDeUsuario = historiasDeUsuario;
     }
 
     public String getUsuarioId() {
@@ -66,21 +87,5 @@ public class UsuarioDTO {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Set<String> getProyectosAsociados() {
-        return proyectosAsociados;
-    }
-
-    public void setProyectosAsociados(Set<String> proyectosAsociados) {
-        this.proyectosAsociados = proyectosAsociados;
-    }
-
-    public Set<String> getHistoriasDeUsuario() {
-        return historiasDeUsuario;
-    }
-
-    public void setHistoriasDeUsuario(Set<String> historiasDeUsuario) {
-        this.historiasDeUsuario = historiasDeUsuario;
     }
 }

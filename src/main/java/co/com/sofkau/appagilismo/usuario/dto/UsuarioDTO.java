@@ -1,5 +1,6 @@
 package co.com.sofkau.appagilismo.usuario.dto;
 
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 public class UsuarioDTO {
@@ -7,15 +8,14 @@ public class UsuarioDTO {
 
     private String usuarioId;
 
-
+    @NotBlank
     private String nombreCompleto;
 
-
+    @NotBlank
     private String email;
 
-
+    @NotBlank
     private String password;
-
 
     private Set<String> proyectosAsociados;
 

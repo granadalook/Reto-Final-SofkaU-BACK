@@ -20,23 +20,28 @@ public class UsuarioDTO {
     @NotBlank
     private String password;
 
+    @NotBlank
+    private String rol;
+
     private List<String> proyectosAsociados;
 
     private List<String> historiasDeUsuario;
 
     public UsuarioDTO() {}
 
-    public UsuarioDTO(String usuarioId, String nombreCompleto, String email, String password) {
+    public UsuarioDTO(String usuarioId, String nombreCompleto, String email, String password, String rol) {
         this.usuarioId=usuarioId;
         this.nombreCompleto = nombreCompleto;
         this.email = email;
         this.password = password;
+        this.rol=rol;
     }
 
     public UsuarioDTO(String nombreCompleto, String email, String password) {
         this.nombreCompleto = nombreCompleto;
         this.email = email;
         this.password = password;
+        this.rol=rol;
     }
 
     public List<String> getProyectosAsociados() {
@@ -87,5 +92,13 @@ public class UsuarioDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 }

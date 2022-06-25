@@ -1,7 +1,7 @@
 package co.com.sofkau.appagilismo.usuario.rutas;
 
+
 import co.com.sofkau.appagilismo.usuario.casos_de_uso.CrearUsuarioCasoDeUso;
-import co.com.sofkau.appagilismo.usuario.casos_de_uso.UsuarioCasosDeUsos;
 import co.com.sofkau.appagilismo.usuario.dto.UsuarioDTO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

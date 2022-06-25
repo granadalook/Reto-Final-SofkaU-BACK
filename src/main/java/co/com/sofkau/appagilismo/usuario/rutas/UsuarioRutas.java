@@ -15,7 +15,7 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 public class UsuarioRutas {
 
     @Bean
-    public RouterFunction<ServerResponse> crearusuario(CrearUsuarioCasoDeUso crearUsuarioCasoDeUso){
+    public RouterFunction<ServerResponse> crearUsuario(CrearUsuarioCasoDeUso crearUsuarioCasoDeUso){
         return (POST("usuario/crear").and(accept(MediaType.APPLICATION_JSON)),
             request -> request.bodyToMono(UsuarioDTO.class)
                     .flatMap(crearUsuarioCasoDeUso::crearUsuario)

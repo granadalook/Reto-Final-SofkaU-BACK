@@ -3,6 +3,8 @@ package co.com.sofkau.appagilismo.usuario.rutas;
 
 import co.com.sofkau.appagilismo.usuario.casos_de_uso.CrearUsuarioCasoDeUso;
 import co.com.sofkau.appagilismo.usuario.dto.UsuarioDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -21,6 +23,7 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 @Configuration
 public class UsuarioRutas {
 
+    private static final Logger logger = LoggerFactory.getLogger(UsuarioRutas.class);
     @Bean
     public RouterFunction<ServerResponse> crearUsuario(CrearUsuarioCasoDeUso crearUsuarioCasoDeUso){
         Function<UsuarioDTO, Mono<ServerResponse>> crearUsuario = usuarioDTO -> crearUsuarioCasoDeUso.crearUsuario(usuarioDTO)
@@ -33,6 +36,7 @@ public class UsuarioRutas {
                     .flatMap(crearUsuario)
         );
     }
+
 
     /*@Bean
     public RouterFunction<ServerResponse> add(UsuarioCasosDeUsos usuarioCasosDeUsos){

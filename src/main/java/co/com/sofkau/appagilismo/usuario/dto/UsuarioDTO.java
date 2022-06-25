@@ -1,6 +1,7 @@
 package co.com.sofkau.appagilismo.usuario.dto;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 public class UsuarioDTO {
@@ -17,23 +18,28 @@ public class UsuarioDTO {
     @NotBlank
     private String password;
 
+    @NotBlank
+    private String rol;
+
     private Set<String> proyectosAsociados;
 
     private Set<String> historiasDeUsuario;
 
 
 
-    public UsuarioDTO(String usuarioId,String nombreCompleto, String email, String password) {
+    public UsuarioDTO(String usuarioId,String nombreCompleto, String email, String password, String rol) {
         this.usuarioId=usuarioId;
         this.nombreCompleto = nombreCompleto;
         this.email = email;
         this.password = password;
+        this.rol=rol;
     }
 
-    public UsuarioDTO(String nombreCompleto, String email, String password) {
+    public UsuarioDTO(String nombreCompleto, String email, String password, String rol) {
         this.nombreCompleto = nombreCompleto;
         this.email = email;
         this.password = password;
+        this.rol= rol;
     }
 
     public String getUsuarioId() {
@@ -82,5 +88,13 @@ public class UsuarioDTO {
 
     public void setHistoriasDeUsuario(Set<String> historiasDeUsuario) {
         this.historiasDeUsuario = historiasDeUsuario;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 }

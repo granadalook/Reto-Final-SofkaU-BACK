@@ -21,14 +21,18 @@ public class Usuario {
     @NotNull
     private String password;
 
+    @NotNull
+    private String rol;
+
 
     public Usuario() {
     }
 
-    public Usuario(String nombreCompleto, String email, String password) {
+    public Usuario(String nombreCompleto, String email, String password, String rol) {
         this.nombreCompleto = nombreCompleto;
         this.email = email;
         this.password = password;
+        this.rol=rol;
     }
 
     public String getUsuarioId() {
@@ -63,5 +67,11 @@ public class Usuario {
         this.password = password;
     }
 
+    public String getRol() {
+        return rol;
+    }
 
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
 }

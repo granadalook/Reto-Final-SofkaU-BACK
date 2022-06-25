@@ -14,6 +14,7 @@ public class MapperUsuario {
             usuario.setNombreCompleto(updateUsuario.getNombreCompleto());
             usuario.setEmail(updateUsuario.getEmail());
             usuario.setPassword(updateUsuario.getEmail());
+            usuario.setRol(updateUsuario.getRol());
             return usuario;
         };
 
@@ -24,7 +25,8 @@ public class MapperUsuario {
                 entity.getUsuarioId(),
                 entity.getNombreCompleto(),
                 entity.getEmail(),
-                entity.getPassword()
+                entity.getPassword(),
+                entity.getRol()
         );
     }
 }

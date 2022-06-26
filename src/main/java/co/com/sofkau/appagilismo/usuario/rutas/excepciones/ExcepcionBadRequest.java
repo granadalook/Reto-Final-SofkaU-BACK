@@ -4,7 +4,7 @@ public class ExcepcionBadRequest extends RuntimeException{
 
     private static final String DESCRIPCION = "Excepcion Bad Request (400)";
 
-    public ExcepcionBadRequest(String detail){
-        super(DESCRIPCION + ", " + detail);
+    public ExcepcionBadRequest(String detalle){
+        super(DESCRIPCION + ", " + detalle);
     }
 }

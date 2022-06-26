@@ -1,36 +1,31 @@
 package co.com.sofkau.appagilismo.usuario.rutas.excepciones;
 
+import java.util.Date;
+
 public class ErrorMessage {
 
-    private String excepcion;
-    private String mensaje;
+    private Integer statusCode;
+    private Date timeStamp;
+    private String message;
 
-    public ErrorMessage(Exception excepcion, String mensaje){
-        this.excepcion=excepcion.getClass().getSimpleName();
-        this.mensaje=excepcion.getMessage();
+
+    public ErrorMessage(Integer statusCode, Date timeStamp, String message) {
+        this.statusCode = statusCode;
+        this.timeStamp = timeStamp;
+        this.message = message;
+
     }
 
-    public String getExcepcion() {
-        return excepcion;
+    public Integer getStatusCode() {
+        return statusCode;
     }
 
-    public void setExcepcion(String excepcion) {
-        this.excepcion = excepcion;
+    public Date getTimeStamp() {
+        return timeStamp;
     }
 
-    public String getMensaje() {
-        return mensaje;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
-    }
-
-    @Override
-    public String toString() {
-        return "ErrorMessage{" +
-                "excepcion='" + excepcion + '\'' +
-                ", mensaje='" + mensaje + '\'' +
-                '}';
-    }
 }

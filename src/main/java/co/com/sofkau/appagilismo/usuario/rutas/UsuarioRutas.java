@@ -3,11 +3,13 @@ package co.com.sofkau.appagilismo.usuario.rutas;
 
 import co.com.sofkau.appagilismo.usuario.casos_de_uso.CrearUsuarioCasoDeUso;
 import co.com.sofkau.appagilismo.usuario.dto.UsuarioDTO;
+import co.com.sofkau.appagilismo.usuario.rutas.excepciones.ExcepcionCampoNombreCompletoVacio;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
@@ -23,8 +25,21 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 @Configuration
 public class UsuarioRutas {
 
-    private static final Logger logger = LoggerFactory.getLogger(UsuarioRutas.class);
+    //private static final Logger logger = LoggerFactory.getLogger(UsuarioRutas.class);
     @Bean
+    public RouterFunction<ServerResponse> crearUsuario(CrearUsuarioCasoDeUso crearUsuarioCasoDeUso){
+        Function<UsuarioDTO, Mono<ServerResponse>> crearUsuario = usuarioDTO -> crearUsuarioCasoDeUso.crearUsuario(usuarioDTO)
+                .flatMap(resultado -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .bodyValue(resultado)
+                );
+        return route(POST("/usuario/crear").and(accept(MediaType.APPLICATION_JSON)),
+                request -> request.bodyToMono(UsuarioDTO.class)
+                        .flatMap(crearUsuario)
+        );
+    }
+
+    /*@Bean
     public RouterFunction<ServerResponse> crearUsuario(CrearUsuarioCasoDeUso crearUsuarioCasoDeUso){
         Function<UsuarioDTO, Mono<ServerResponse>> crearUsuario = usuarioDTO -> crearUsuarioCasoDeUso.crearUsuario(usuarioDTO)
                 .flatMap(resultado -> ServerResponse.ok()
@@ -35,8 +50,7 @@ public class UsuarioRutas {
             request -> request.bodyToMono(UsuarioDTO.class)
                     .flatMap(crearUsuario)
         );
-    }
-
+    }*/
 
     /*@Bean
     public RouterFunction<ServerResponse> add(UsuarioCasosDeUsos usuarioCasosDeUsos){

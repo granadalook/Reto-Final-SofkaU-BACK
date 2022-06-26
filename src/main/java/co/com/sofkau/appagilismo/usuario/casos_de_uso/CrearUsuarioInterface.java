@@ -9,4 +9,5 @@ import javax.validation.Valid;
 public interface CrearUsuarioInterface {
 
     Mono<UsuarioDTO> crearUsuario(@Valid UsuarioDTO usuarioDTO);
+
 }

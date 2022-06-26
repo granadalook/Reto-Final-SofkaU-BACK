@@ -1,14 +1,16 @@
 package co.com.sofkau.appagilismo.usuario.casos_de_uso;
 
+import co.com.sofkau.appagilismo.usuario.coleccion.Usuario;
 import co.com.sofkau.appagilismo.usuario.dto.UsuarioDTO;
 import co.com.sofkau.appagilismo.usuario.mapper.MapperUsuario;
 import co.com.sofkau.appagilismo.usuario.repositorio.UsuarioRepositorio;
+import co.com.sofkau.appagilismo.usuario.rutas.excepciones.ExcepcionCampoEmailVacio;
+import co.com.sofkau.appagilismo.usuario.rutas.excepciones.ExcepcionCampoNombreCompletoVacio;
 import co.com.sofkau.appagilismo.usuario.utilidades.EnviarMail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.reactive.function.server.ServerResponse;
 import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 
@@ -32,12 +34,12 @@ public class CrearUsuarioCasoDeUso implements CrearUsuarioInterface {
     @Override
     public Mono<UsuarioDTO> crearUsuario(UsuarioDTO usuarioDTO) {
         //Objects.requireNonNull(usuarioDTO.getEmail(), "El correo es obligatorio");
-        Objects.requireNonNull(usuarioDTO.getNombreCompleto(), "El nombre del usuario es obligatorio");
+        //Objects.requireNonNull(usuarioDTO.getNombreCompleto());
+
         return repositorio
                 .save(mapperUsuario.mapperAUsuario().apply(usuarioDTO))
                 .map(usuario -> {
-                    Objects.requireNonNull(usuarioDTO.getEmail(), "El correo es obligatorio");
-                            try {
+                        try {
                                 enviarMail.enviarEmail(usuario.getEmail(),
                                         "Datos de ingreso a la app de gestor de agilismo: ",
                                         "Su usuario es: " + usuario.getEmail() + "\n" +
@@ -49,7 +51,6 @@ public class CrearUsuarioCasoDeUso implements CrearUsuarioInterface {
                             }
                             return mapperUsuario.mapperAUsuarioDTO().apply(usuario);
                         }
-                )
-                .onErrorResume(error -> Mono.error(new ResponseStatusException(HttpStatus.BAD_REQUEST)));
+                ).onErrorResume(error -> Mono.error(new ResponseStatusException(HttpStatus.BAD_REQUEST)));
     }
 }

@@ -45,14 +45,4 @@ public class UsuarioRutas {
             );
     }
 
-    /*@Bean
-    public RouterFunction<ServerResponse> add(UsuarioCasosDeUsos usuarioCasosDeUsos){
-        return route(
-                GET("/getOwnerAll/{userId}"),
-                request -> ServerResponse.ok()
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(BodyInserters.fromPublisher(
-                                usuarioCasosDeUsos.apply(request.pathVariable("userId")),
-                                String.class)));
-    }*/
 }

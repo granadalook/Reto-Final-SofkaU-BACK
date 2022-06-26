@@ -36,38 +36,9 @@ public class CrearUsuarioCasoDeUso implements CrearUsuarioInterface {
         Objects.requireNonNull(usuarioDTO.getEmail(), "El correo es obligatorio");
         Objects.requireNonNull(usuarioDTO.getNombreCompleto(), "el nombre no puede estar vacio");
 
-        return repositorio./*findByEmail(usuarioDTO.getEmail())
-                .flatMap(objeto -> {
-                    if(objeto.getEmail().equals(usuarioDTO.getEmail())){
-                        return Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND));
-                    }
-                    repositorio*/save(mapperUsuario.mapperAUsuario().apply(usuarioDTO))
-                            .map(usuario -> {
-                                        try {
-                                            enviarMail.enviarEmail(usuario.getEmail(),
-                                                    "Datos de ingreso a la app de gestor de agilismo: ",
-                                                    "Su usuario es: " + usuario.getEmail() + "\n" +
-                                                            "Su contraseña es: " + usuario.getPassword() + "\n" +
-                                                            "Url de inicio de sesión: ");
-
-                                        } catch (Exception e) {
-                                            System.out.println("No se pudo enviar correo");
-                                        }
-                                        return mapperUsuario.mapperAUsuarioDTO().apply(usuario);
-                                    }
-                            ).onErrorResume(error -> Mono.error(new ResponseStatusException(HttpStatus.BAD_REQUEST)));
-                    //return Mono.error(new ResponseStatusException(HttpStatus.BAD_REQUEST));
-                //});
-
-
-
-
-    }
-
-    /*return repositorio
-                .save(mapperUsuario.mapperAUsuario().apply(usuarioDTO))
+        return repositorio.save(mapperUsuario.mapperAUsuario().apply(usuarioDTO))
                 .map(usuario -> {
-                        try {
+                            try {
                                 enviarMail.enviarEmail(usuario.getEmail(),
                                         "Datos de ingreso a la app de gestor de agilismo: ",
                                         "Su usuario es: " + usuario.getEmail() + "\n" +
@@ -79,6 +50,8 @@ public class CrearUsuarioCasoDeUso implements CrearUsuarioInterface {
                             }
                             return mapperUsuario.mapperAUsuarioDTO().apply(usuario);
                         }
-                ).onErrorResume(error -> Mono.error(new ResponseStatusException(HttpStatus.BAD_REQUEST)));*/
+                ).onErrorResume(error -> Mono.error(new ResponseStatusException(HttpStatus.BAD_REQUEST)));
+
+    }
 
 }

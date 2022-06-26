@@ -52,4 +52,5 @@ public class CrearUsuarioCasoDeUso implements CrearUsuarioInterface {
                 )
                 .onErrorResume(error -> Mono.error(new ResponseStatusException(HttpStatus.BAD_REQUEST)));
     }
+
 }

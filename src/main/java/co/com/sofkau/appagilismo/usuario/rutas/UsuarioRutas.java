@@ -2,6 +2,7 @@ package co.com.sofkau.appagilismo.usuario.rutas;
 
 
 import co.com.sofkau.appagilismo.usuario.casos_de_uso.CrearUsuarioCasoDeUso;
+import co.com.sofkau.appagilismo.usuario.casos_de_uso.LogInCasoDeUso;
 import co.com.sofkau.appagilismo.usuario.dto.UsuarioDTO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +33,18 @@ public class UsuarioRutas {
             request -> request.bodyToMono(UsuarioDTO.class)
                     .flatMap(crearUsuario)
         );
+    }
+    @Bean
+    public RouterFunction<ServerResponse> Login(LogInCasoDeUso logInCasoDeUso){
+        Function<UsuarioDTO, Mono<ServerResponse>> logIn = usuarioDTO -> logInCasoDeUso.logIn(usuarioDTO)
+                .flatMap(resultado -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .bodyValue(resultado)
+                );
+            return route(GET("/usuario/login").and(accept(MediaType.APPLICATION_JSON)),
+                    request -> request.bodyToMono(UsuarioDTO.class)
+                            .flatMap(logIn)
+            );
     }
 
     /*@Bean

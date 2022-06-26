@@ -1,5 +1,8 @@
 package co.com.sofkau.appagilismo.usuario.dto;
 
+import co.com.sofkau.appagilismo.usuario.coleccion.Usuario;
+import reactor.core.publisher.Mono;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
@@ -48,6 +51,7 @@ public class UsuarioDTO {
         this.proyectosAsociados = Optional.ofNullable(proyectosAsociados).orElse(new ArrayList<>());
         return proyectosAsociados;
     }
+
 
     public void setProyectosAsociados(List<String> proyectosAsociados) {
         this.proyectosAsociados = proyectosAsociados;
@@ -100,5 +104,16 @@ public class UsuarioDTO {
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    @Override
+    public String toString() {
+        return "UsuarioDTO{" +
+                "usuarioId='" + usuarioId + '\'' +
+                ", nombreCompleto='" + nombreCompleto + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", rol='" + rol + '\'' +
+                '}';
     }
 }

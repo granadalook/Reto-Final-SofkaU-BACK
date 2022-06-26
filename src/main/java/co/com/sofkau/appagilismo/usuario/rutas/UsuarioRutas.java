@@ -25,9 +25,7 @@ public class UsuarioRutas {
     @Bean
     public RouterFunction<ServerResponse> crearUsuario(CrearUsuarioCasoDeUso crearUsuarioCasoDeUso){
         Function<UsuarioDTO, Mono<ServerResponse>> crearUsuario = usuarioDTO -> crearUsuarioCasoDeUso.crearUsuario(usuarioDTO)
-                .flatMap(resultado -> ServerResponse.ok()
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .bodyValue(resultado)
+                .flatMap(resultado -> Mono.error(new RuntimeException("hola, pailas"))
                 );
         return route(POST("/usuario/crear").and(accept(MediaType.APPLICATION_JSON)),
             request -> request.bodyToMono(UsuarioDTO.class)

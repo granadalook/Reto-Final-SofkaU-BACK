@@ -6,6 +6,7 @@ import co.com.sofkau.appagilismo.usuario.casos_de_uso.LogInCasoDeUso;
 import co.com.sofkau.appagilismo.usuario.dto.UsuarioDTO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.RouterFunction;
@@ -25,7 +26,9 @@ public class UsuarioRutas {
     @Bean
     public RouterFunction<ServerResponse> crearUsuario(CrearUsuarioCasoDeUso crearUsuarioCasoDeUso){
         Function<UsuarioDTO, Mono<ServerResponse>> crearUsuario = usuarioDTO -> crearUsuarioCasoDeUso.crearUsuario(usuarioDTO)
-                .flatMap(resultado -> Mono.error(new RuntimeException("hola, pailas"))
+                .flatMap(resultado ->ServerResponse.status(HttpStatus.CREATED)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .bodyValue(resultado)
                 );
         return route(POST("/usuario/crear").and(accept(MediaType.APPLICATION_JSON)),
             request -> request.bodyToMono(UsuarioDTO.class)

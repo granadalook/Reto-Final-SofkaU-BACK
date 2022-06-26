@@ -1,5 +1,6 @@
 package co.com.sofkau.appagilismo.config;
 
+import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.config.CorsRegistry;
@@ -23,5 +24,10 @@ public class WebFluxConfig {
                         .allowedMethods("*");
             }
         };
+    }
+
+    @Bean
+    public WebProperties.Resources resources() {
+        return new WebProperties.Resources();
     }
 }

@@ -39,7 +39,7 @@ public class UsuarioRutas {
                         .contentType(MediaType.APPLICATION_JSON)
                         .bodyValue(resultado)
                 );
-            return route(GET("/login").and(accept(MediaType.APPLICATION_JSON)),
+            return route(POST("/login").and(accept(MediaType.APPLICATION_JSON)),
                     request -> request.bodyToMono(UsuarioDTO.class)
                             .flatMap(logIn)
             );

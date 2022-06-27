@@ -15,6 +15,7 @@ public class MapperHistoriaDeUsuario {
             historiaDeUsuario.setHistoriaUsuarioId(id);
             historiaDeUsuario.setDescripcion(updateHistoriaDeUsuario.getDescripcion());
             historiaDeUsuario.setUsuarioId(updateHistoriaDeUsuario.getUsuarioId());
+            historiaDeUsuario.setProyectoId(updateHistoriaDeUsuario.getProyectoId());
             return historiaDeUsuario;
         };
     }
@@ -23,7 +24,8 @@ public class MapperHistoriaDeUsuario {
         return entity -> new HistoriaDeUsuarioDTO(
                 entity.getHistoriaUsuarioId(),
                 entity.getDescripcion(),
-                entity.getUsuarioId()
+                entity.getUsuarioId(),
+                entity.getProyectoId()
         );
     }
 }

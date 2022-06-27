@@ -23,8 +23,7 @@ public class Proyecto {
 
     private List<String> desarrolladorId;
 
-    public Proyecto() {
-    }
+    public Proyecto() {}
 
     public Proyecto(String proyectoId, String nombre, String arquitectoId, String liderTecnicoId, List<String> desarrolladorId) {
         this.proyectoId = proyectoId;

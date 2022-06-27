@@ -20,6 +20,7 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 import reactor.core.publisher.Mono;
 
 import java.util.Map;
+import java.util.Optional;
 
 @Component
 public class ManejadorDeExcepciones extends AbstractErrorWebExceptionHandler {
@@ -37,8 +38,18 @@ public class ManejadorDeExcepciones extends AbstractErrorWebExceptionHandler {
 
     private Mono<ServerResponse> renderErrorResponseBadRequest(ServerRequest request){
         Map<String, Object> errorProperties = getErrorAttributes(request, ErrorAttributeOptions.defaults());
-        return ServerResponse.status(HttpStatus.BAD_REQUEST).contentType(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromValue(errorProperties));
+        int status = (int) Optional.ofNullable(errorProperties.get("status")).orElse(400);
+        if (status == 404){
+            return ServerResponse.status(HttpStatus.NOT_FOUND).contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromValue(errorProperties));
+        }
+        //if ( status == 400) {
+            return ServerResponse.status(HttpStatus.BAD_REQUEST).contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromValue(errorProperties));
+       // }
+        /*return ServerResponse.status(HttpStatus.INTERNAL_SERVER_ERROR).contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromValue(errorProperties));*/
+
     }
 
 }

@@ -31,4 +31,6 @@ public class HistoriaDeUsuarioRutas {
                         .flatMap(crearHistoriaDeUsuario)
                 );
     }
+
+    
 }

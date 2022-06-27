@@ -1,4 +1,4 @@
-package co.com.sofkau.appagilismo.historiadeusuario.coleccion;
+package co.com.sofkau.appagilismo.historiadeusuario.casos_de_uso;
 
 import co.com.sofkau.appagilismo.historiadeusuario.dto.HistoriaDeUsuarioDTO;
 import reactor.core.publisher.Mono;

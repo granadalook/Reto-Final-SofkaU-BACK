@@ -2,6 +2,7 @@ package co.com.sofkau.appagilismo.usuario.casos_de_uso;
 
 import co.com.sofkau.appagilismo.usuario.coleccion.Usuario;
 import co.com.sofkau.appagilismo.usuario.dto.UsuarioDTO;
+import co.com.sofkau.appagilismo.usuario.dto.UsuarioLogin;
 import co.com.sofkau.appagilismo.usuario.mapper.MapperUsuario;
 import co.com.sofkau.appagilismo.usuario.repositorio.UsuarioRepositorio;
 
@@ -23,7 +24,6 @@ import java.util.Objects;
 public class LogInCasoDeUso implements LogInInterface{
     private static final Logger log = LoggerFactory.getLogger(LogInCasoDeUso.class);
 
-
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
     private final MapperUsuario mapperUsuario;
@@ -33,15 +33,13 @@ public class LogInCasoDeUso implements LogInInterface{
         this.mapperUsuario = mapperUsuario;
     }
 
+    public Mono<UsuarioDTO> logIn(UsuarioLogin usuarioLogin) {
+        Objects.requireNonNull(usuarioLogin.getEmail(), "El email es obligatorio.");
+        Objects.requireNonNull(usuarioLogin.getPassword(), "La contraseña es obligatoria.");
 
-    @Override
-    public Mono<UsuarioDTO> logIn(UsuarioDTO usuarioDTO) {
-        Objects.requireNonNull(usuarioDTO.getEmail(), "El email es obligatorio.");
-        Objects.requireNonNull(usuarioDTO.getPassword(), "La contraseña es obligatoria.");
-
-        return usuarioRepositorio.findByEmail(usuarioDTO.getEmail())
-                .filter(objeto -> objeto.getEmail().equals(usuarioDTO.getEmail()) && objeto.getPassword().equals(usuarioDTO.getPassword()))
-                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND)));
+        return usuarioRepositorio.findByEmail(usuarioLogin.getEmail())
+                .filter(objeto -> objeto.getEmail().equals(usuarioLogin.getEmail()) && objeto.getPassword().equals(usuarioLogin.getPassword()))
+                .switchIfEmpty(Mono.error(new RuntimeException("El usuario no esta registrado.")));
     }
 
 }

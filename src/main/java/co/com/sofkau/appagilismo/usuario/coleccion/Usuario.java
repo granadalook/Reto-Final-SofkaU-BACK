@@ -1,11 +1,10 @@
 package co.com.sofkau.appagilismo.usuario.coleccion;
 
-import com.sun.istack.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-//import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 @Document(collection = "usuarios")
 public class Usuario {
@@ -13,16 +12,16 @@ public class Usuario {
     @Id
     private String usuarioId;
 
-    @NotNull
+    @NotBlank
     private String nombreCompleto;
 
     @Indexed(unique = true)
     private String email;
 
-    @NotNull
+    @NotBlank
     private String password;
 
-    @NotNull
+    @NotBlank
     private String rol;
 
 

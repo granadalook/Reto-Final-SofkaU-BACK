@@ -47,6 +47,11 @@ public class UsuarioDTO {
         this.rol=rol;
     }
 
+    public UsuarioDTO(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public List<String> getProyectosAsociados() {
         this.proyectosAsociados = Optional.ofNullable(proyectosAsociados).orElse(new ArrayList<>());
         return proyectosAsociados;

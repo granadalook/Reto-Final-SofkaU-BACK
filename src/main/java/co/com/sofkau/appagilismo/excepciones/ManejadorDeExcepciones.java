@@ -1,5 +1,6 @@
 package co.com.sofkau.appagilismo.excepciones;
 
+import com.fasterxml.jackson.core.json.async.NonBlockingJsonParser;
 import org.springframework.boot.autoconfigure.web.WebProperties.Resources;
 import org.springframework.boot.autoconfigure.web.reactive.error.AbstractErrorWebExceptionHandler;
 import org.springframework.boot.web.error.ErrorAttributeOptions;
@@ -31,10 +32,10 @@ public class ManejadorDeExcepciones extends AbstractErrorWebExceptionHandler {
 
     @Override
     protected RouterFunction<ServerResponse> getRoutingFunction(ErrorAttributes errorAttributes) {
-       return RouterFunctions.route(RequestPredicates.all(), this::renderErrorResponse);
+       return RouterFunctions.route(RequestPredicates.all(), this::renderErrorResponseBadRequest);
     }
 
-    private Mono<ServerResponse> renderErrorResponse(ServerRequest request){
+    private Mono<ServerResponse> renderErrorResponseBadRequest(ServerRequest request){
         Map<String, Object> errorProperties = getErrorAttributes(request, ErrorAttributeOptions.defaults());
         return ServerResponse.status(HttpStatus.BAD_REQUEST).contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromValue(errorProperties));

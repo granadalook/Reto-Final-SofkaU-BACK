@@ -2,6 +2,7 @@ package co.com.sofkau.appagilismo.usuario.mapper;
 
 import co.com.sofkau.appagilismo.usuario.coleccion.Usuario;
 import co.com.sofkau.appagilismo.usuario.dto.UsuarioDTO;
+import co.com.sofkau.appagilismo.usuario.dto.UsuarioLogin;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
@@ -29,4 +30,5 @@ public class MapperUsuario {
                 entity.getRol()
         );
     }
+
 }

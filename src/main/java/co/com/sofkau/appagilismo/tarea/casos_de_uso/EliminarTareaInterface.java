@@ -7,5 +7,5 @@ import javax.validation.Valid;
 
 @FunctionalInterface
 public interface EliminarTareaInterface  {
-    Mono<Void> eliminarTarea (@Valid TareaDTO tareaDTO);
+    Mono<Void> eliminarTarea (@Valid String historiausuarioId);
 }

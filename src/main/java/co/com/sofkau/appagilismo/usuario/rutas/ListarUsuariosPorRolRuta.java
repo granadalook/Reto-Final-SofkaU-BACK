@@ -10,6 +10,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
+import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @Configuration
@@ -17,11 +18,11 @@ public class ListarUsuariosPorRolRuta {
 
     @Bean
     public RouterFunction<ServerResponse> listarUsuariosPorRol(ListarUsuariosPorRolCasoDeUso listarUsuariosPorRolCasoDeUso){
-        return route(GET("/usuario/listarPorRol/{rol}"),
+        return route(GET("/usuario/listarPorRol/{rol}").and(accept(APPLICATION_JSON)),
                 request -> ServerResponse.ok()
                         .contentType(APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(
-                                listarUsuariosPorRolCasoDeUso.apply("rol"),
+                                listarUsuariosPorRolCasoDeUso.apply(request.pathVariable("rol")),
                                 UsuarioDTO.class
                         ))
                 );

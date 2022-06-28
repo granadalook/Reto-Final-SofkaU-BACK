@@ -1,6 +1,7 @@
 package co.com.sofkau.appagilismo.historiadeusuario.casos_de_uso;
 
 import co.com.sofkau.appagilismo.historiadeusuario.repositorio.HistoriaDeUsuarioRepositorio;
+import co.com.sofkau.appagilismo.tarea.repositorio.TareaRepositorio;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Mono;
@@ -22,9 +23,9 @@ public class EliminarHistoriaDeUsuarioCasoDeUso implements Function<String, Mono
     }
 
     @Override
-    public Mono<Void> apply(String id) {
-        Objects.requireNonNull(id, "Id es campo obligatorio.");
-        return repositorio.deleteById(id)
-                .switchIfEmpty(Mono.defer(() -> tareaRepositorio.eliminarPorHistoriaUsuarioId(id)));
+    public Mono<Void> apply(String historiaUsuarioId) {
+        Objects.requireNonNull(historiaUsuarioId, "Id es campo obligatorio.");
+        return repositorio.deleteById(historiaUsuarioId)
+                .switchIfEmpty(Mono.defer(() -> tareaRepositorio.eliminarPorHistoriaUsuarioId(historiaUsuarioId)));
     }
 }

@@ -1,6 +1,5 @@
 package co.com.sofkau.appagilismo.usuario.casos_de_uso;
 
-import co.com.sofkau.appagilismo.usuario.coleccion.Usuario;
 import co.com.sofkau.appagilismo.usuario.mapper.MapperUsuario;
 import co.com.sofkau.appagilismo.usuario.repositorio.UsuarioRepositorio;
 import org.springframework.stereotype.Service;

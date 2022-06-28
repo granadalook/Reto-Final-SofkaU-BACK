@@ -20,7 +20,7 @@ public class WebFluxConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("*")
+                        .allowedOrigins("localhost:4200")
                         .allowedMethods("*");
             }
         };

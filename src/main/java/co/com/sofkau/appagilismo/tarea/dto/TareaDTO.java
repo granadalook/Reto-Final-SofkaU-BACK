@@ -20,25 +20,27 @@ public class TareaDTO {
     private String descripcionTarea;
 
     @NotBlank
-    private List<String> historias_de_usuarios;
+    private String historiaUsuarioId;
 
     public TareaDTO (){
 
     }
 
-    public TareaDTO(String desarrolladorId, String nombreTarea, boolean estadoTarea, String descripcionTarea, List<String> historias_de_usuarios) {
+    public TareaDTO(String tareaId,String desarrolladorId, String nombreTarea, boolean estadoTarea, String descripcionTarea, String historiaUsuarioId) {
+        this.tareaId=tareaId;
         this.desarrolladorId = desarrolladorId;
         this.nombreTarea = nombreTarea;
         this.estadoTarea = estadoTarea;
         this.descripcionTarea = descripcionTarea;
-        this.historias_de_usuarios = historias_de_usuarios;
+        this.historiaUsuarioId=historiaUsuarioId;
     }
 
-    public TareaDTO(String desarrolladorId, String nombreTarea, boolean estadoTarea, String descripcionTarea) {
+    public TareaDTO(String desarrolladorId, String nombreTarea, boolean estadoTarea, String descripcionTarea, String historiaUsuarioId) {
         this.desarrolladorId = desarrolladorId;
         this.nombreTarea = nombreTarea;
         this.estadoTarea = estadoTarea;
         this.descripcionTarea = descripcionTarea;
+        this.historiaUsuarioId=historiaUsuarioId;
     }
 
     public String getTareaId() {
@@ -81,12 +83,12 @@ public class TareaDTO {
         this.descripcionTarea = descripcionTarea;
     }
 
-    public List<String> getHistorias_de_usuarios() {
-        return historias_de_usuarios;
+    public String getHistoriaUsuarioId() {
+        return historiaUsuarioId;
     }
 
-    public void setHistorias_de_usuarios(List<String> historias_de_usuarios) {
-        this.historias_de_usuarios = historias_de_usuarios;
+    public void setHistoriaUsuarioId(String historiaUsuarioId) {
+        this.historiaUsuarioId = historiaUsuarioId;
     }
 }
 

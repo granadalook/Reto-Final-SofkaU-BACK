@@ -23,24 +23,29 @@ public class Tarea {
     @NotBlank
     private String descripcionTarea;
 
+    @NotBlank
+    private String historiaUsuarioId;
+
 
     public Tarea(){
 
     };
 
-    public Tarea(String tareaId, String desarrolladorId, String nombreTarea, boolean estadoTarea, String descripcionTarea) {
+    public Tarea(String tareaId, String desarrolladorId, String nombreTarea, boolean estadoTarea, String descripcionTarea, String historiaUsuarioId) {
         this.tareaId = tareaId;
         this.desarrolladorId = desarrolladorId;
         this.nombreTarea = nombreTarea;
         this.estadoTarea = estadoTarea;
         this.descripcionTarea = descripcionTarea;
+        this.historiaUsuarioId=historiaUsuarioId;
     }
 
-    public Tarea(String desarrolladorId, String nombreTarea, boolean estadoTarea, String descripcionTarea) {
+    public Tarea(String desarrolladorId, String nombreTarea, boolean estadoTarea, String descripcionTarea, String historiaUsuarioId) {
         this.desarrolladorId = desarrolladorId;
         this.nombreTarea = nombreTarea;
         this.estadoTarea = estadoTarea;
         this.descripcionTarea = descripcionTarea;
+        this.historiaUsuarioId=historiaUsuarioId;
     }
 
     public String getTareaId() {
@@ -81,5 +86,13 @@ public class Tarea {
 
     public void setDescripcionTarea(String descripcionTarea) {
         this.descripcionTarea = descripcionTarea;
+    }
+
+    public String getHistoriaUsuarioId() {
+        return historiaUsuarioId;
+    }
+
+    public void setHistoriaUsuarioId(String historiaUsuarioId) {
+        this.historiaUsuarioId = historiaUsuarioId;
     }
 }

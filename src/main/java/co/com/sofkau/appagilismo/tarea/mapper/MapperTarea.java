@@ -29,20 +29,23 @@ public class MapperTarea {
     public Function<TareaDTO, Tarea> mapperATarea(){
         return tareaActualizada -> {
             var tarea = new Tarea();
-            tareaActualizada.getDesarrolladorId();
-            tareaActualizada.getNombreTarea();
-            tareaActualizada.isEstadoTarea();
-            tareaActualizada.getDescripcionTarea();
+            tarea.setDesarrolladorId(tareaActualizada.getDesarrolladorId());
+            tarea.setNombreTarea(tareaActualizada.getNombreTarea());
+            tarea.setEstadoTarea(tareaActualizada.isEstadoTarea());
+            tarea.setDescripcionTarea(tareaActualizada.getDescripcionTarea());
+            tarea.setHistoriaUsuarioId(tareaActualizada.getHistoriaUsuarioId());
             return tarea;
         };
     }
 
     public  Function<Tarea,TareaDTO> mapperATareaDTO(){
-        return tareaDTO -> new TareaDTO(
-                tareaDTO.getDesarrolladorId(),
-                tareaDTO.getNombreTarea(),
-                tareaDTO.isEstadoTarea(),
-                tareaDTO.getDescripcionTarea()
+        return tarea -> new TareaDTO(
+                tarea.getTareaId(),
+                tarea.getDesarrolladorId(),
+                tarea.getNombreTarea(),
+                tarea.isEstadoTarea(),
+                tarea.getDescripcionTarea(),
+                tarea.getHistoriaUsuarioId()
         );
     }
 

@@ -37,7 +37,7 @@ public class LogInCasoDeUso implements LogInInterface{
         Objects.requireNonNull(usuarioLogin.getEmail(), "El email es obligatorio.");
         Objects.requireNonNull(usuarioLogin.getPassword(), "La contraseña es obligatoria.");
 
-        return usuarioRepositorio.findByEmail(usuarioLogin.getEmail())
+        return usuarioRepositorio.findByEmailByPassword(usuarioLogin.getEmail(), usuarioLogin.getPassword())
                 .filter(objeto -> objeto.getEmail().equals(usuarioLogin.getEmail()) && objeto.getPassword().equals(usuarioLogin.getPassword()))
                 .switchIfEmpty(Mono.error(new RuntimeException("El usuario no esta registrado.")));
     }

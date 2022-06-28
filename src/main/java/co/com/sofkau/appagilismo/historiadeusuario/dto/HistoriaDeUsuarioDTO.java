@@ -1,11 +1,10 @@
 package co.com.sofkau.appagilismo.historiadeusuario.dto;
 
+import co.com.sofkau.appagilismo.tarea.dto.TareaDTO;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 public class HistoriaDeUsuarioDTO {
-
-
     private String historiaUsuarioId;
 
     @NotBlank
@@ -17,7 +16,7 @@ public class HistoriaDeUsuarioDTO {
     @NotBlank
     private String proyectoId;
 
-    private List<String> tareas; // cambiar el String por tipo clase Tarea.
+    private List<TareaDTO> tareas;
 
     public HistoriaDeUsuarioDTO() {
     }
@@ -67,11 +66,11 @@ public class HistoriaDeUsuarioDTO {
         this.usuarioId = usuarioId;
     }
 
-    public List<String> getTareas() {
+    public List<TareaDTO> getTareas() {
         return tareas;
     }
 
-    public void setTareas(List<String> tareas) {
+    public void setTareas(List<TareaDTO> tareas) {
         this.tareas = tareas;
     }
 }

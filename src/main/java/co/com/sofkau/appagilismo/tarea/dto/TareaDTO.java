@@ -5,48 +5,29 @@ import java.util.List;
 
 public class TareaDTO {
 
-    private String tareaId;
-
-    @NotBlank
+    @NotBlank(message = "Debe existir el desarrolladorId para este objeto.")
     private String desarrolladorId;
 
     @NotBlank
     private String nombreTarea;
 
-    @NotBlank
     private boolean estadoTarea;
 
     @NotBlank
     private String descripcionTarea;
 
     @NotBlank
-    private List<String> historias_de_usuarios;
+    private String historiaUsuarioId;
 
-    public TareaDTO (){
-
+    public TareaDTO() {
     }
 
-    public TareaDTO(String desarrolladorId, String nombreTarea, boolean estadoTarea, String descripcionTarea, List<String> historias_de_usuarios) {
-        this.desarrolladorId = desarrolladorId;
+    public TareaDTO(String desarrolladorId, String nombreTarea, boolean estadoTarea, String descripcionTarea, String historiaUsuarioId) {
+        this.desarrolladorId=desarrolladorId;
         this.nombreTarea = nombreTarea;
         this.estadoTarea = estadoTarea;
         this.descripcionTarea = descripcionTarea;
-        this.historias_de_usuarios = historias_de_usuarios;
-    }
-
-    public TareaDTO(String desarrolladorId, String nombreTarea, boolean estadoTarea, String descripcionTarea) {
-        this.desarrolladorId = desarrolladorId;
-        this.nombreTarea = nombreTarea;
-        this.estadoTarea = estadoTarea;
-        this.descripcionTarea = descripcionTarea;
-    }
-
-    public String getTareaId() {
-        return tareaId;
-    }
-
-    public void setTareaId(String tareaId) {
-        this.tareaId = tareaId;
+        this.historiaUsuarioId = historiaUsuarioId;
     }
 
     public String getDesarrolladorId() {
@@ -81,12 +62,12 @@ public class TareaDTO {
         this.descripcionTarea = descripcionTarea;
     }
 
-    public List<String> getHistorias_de_usuarios() {
-        return historias_de_usuarios;
+    public String getHistoriaUsuarioId() {
+        return historiaUsuarioId;
     }
 
-    public void setHistorias_de_usuarios(List<String> historias_de_usuarios) {
-        this.historias_de_usuarios = historias_de_usuarios;
+    public void setHistoriaUsuarioId(String historiaUsuarioId) {
+        this.historiaUsuarioId = historiaUsuarioId;
     }
 }
 

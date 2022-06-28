@@ -3,6 +3,7 @@ package co.com.sofkau.appagilismo.historiadeusuario.mapper;
 import co.com.sofkau.appagilismo.historiadeusuario.coleccion.HistoriaDeUsuario;
 import co.com.sofkau.appagilismo.historiadeusuario.dto.HistoriaDeUsuarioDTO;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Mono;
 
 import java.util.function.Function;
 
@@ -27,4 +28,5 @@ public class MapperHistoriaDeUsuario {
                 entity.getProyectoId()
         );
     }
+
 }

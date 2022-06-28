@@ -36,7 +36,7 @@ public class UsuarioRutas {
     }
     @Bean
     public RouterFunction<ServerResponse> Login(LogInCasoDeUso logInCasoDeUso){
-        Function<UsuarioDTO, Mono<ServerResponse>> logIn = usuarioDTO -> logInCasoDeUso.logIn(usuarioDTO)
+                Function<UsuarioDTO, Mono<ServerResponse>> logIn = usuarioDTO -> logInCasoDeUso.logIn(usuarioDTO)
                 .flatMap(resultado -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .bodyValue(resultado)

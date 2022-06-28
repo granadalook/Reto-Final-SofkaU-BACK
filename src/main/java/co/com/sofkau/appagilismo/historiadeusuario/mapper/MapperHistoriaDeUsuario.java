@@ -9,10 +9,9 @@ import java.util.function.Function;
 @Component
 public class MapperHistoriaDeUsuario {
 
-    public Function<HistoriaDeUsuarioDTO, HistoriaDeUsuario> mapperAHistoriaDeUsuario(String id){
+    public Function<HistoriaDeUsuarioDTO, HistoriaDeUsuario> mapperAHistoriaDeUsuario(){
         return updateHistoriaDeUsuario -> {
             var historiaDeUsuario = new HistoriaDeUsuario();
-            historiaDeUsuario.setHistoriaUsuarioId(id);
             historiaDeUsuario.setDescripcion(updateHistoriaDeUsuario.getDescripcion());
             historiaDeUsuario.setUsuarioId(updateHistoriaDeUsuario.getUsuarioId());
             historiaDeUsuario.setProyectoId(updateHistoriaDeUsuario.getProyectoId());

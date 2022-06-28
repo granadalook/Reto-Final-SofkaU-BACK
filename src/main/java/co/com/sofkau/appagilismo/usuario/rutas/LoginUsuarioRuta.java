@@ -1,5 +1,6 @@
 package co.com.sofkau.appagilismo.usuario.rutas;
 
+import co.com.sofkau.appagilismo.excepciones.ExcepcionPersonalizadaInternalServerError;
 import co.com.sofkau.appagilismo.usuario.casos_de_uso.LogInCasoDeUso;
 import co.com.sofkau.appagilismo.usuario.dto.UsuarioLogin;
 import org.springframework.context.annotation.Bean;
@@ -9,7 +10,9 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
+import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
@@ -26,8 +29,18 @@ public class LoginUsuarioRuta {
                         .bodyValue(resultado)
                 );
 
+       /* Supplier<Mono<ServerResponse>> onError =
+            Optional<String> email = request.queryParam("email");
+            Optional<String> password = request.queryParam("password");
+            if(email.isEmpty() || password.equals(null)){
+                // log.info("entro al if {}");
+                throw  new ExcepcionPersonalizadaInternalServerError("Email o contraseña vacío");
+            }
+            throw new ExcepcionPersonalizadaInternalServerError("Formato de email invalido");*/
+
         return route(POST("/login").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(UsuarioLogin.class)
+                        //.onErrorReturn(error -> ServerResponse.badRequest().build())
                         .flatMap(logIn)
                             /*.flatMap(dato -> {
                                 Optional<String> email = request.queryParam("email");

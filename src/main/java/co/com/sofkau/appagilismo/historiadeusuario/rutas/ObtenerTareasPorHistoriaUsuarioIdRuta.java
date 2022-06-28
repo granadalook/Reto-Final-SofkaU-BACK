@@ -1,4 +1,4 @@
-package co.com.sofkau.appagilismo.usuario.rutas;
+package co.com.sofkau.appagilismo.historiadeusuario.rutas;
 
 import co.com.sofkau.appagilismo.historiadeusuario.casos_de_uso.AsociarHistoriaDeUsuarioCasoDeUso;
 import co.com.sofkau.appagilismo.historiadeusuario.dto.HistoriaDeUsuarioDTO;

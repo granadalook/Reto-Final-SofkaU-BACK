@@ -27,11 +27,11 @@ public class Tarea {
     private String historiaUsuarioId;
 
 
-    public Tarea(){
+    /*public Tarea(){
 
-    };
+    };*/
 
-    public Tarea(String tareaId, String desarrolladorId, String nombreTarea, boolean estadoTarea, String descripcionTarea, String historiaUsuarioId) {
+    /*public Tarea(String tareaId, String desarrolladorId, String nombreTarea, boolean estadoTarea, String descripcionTarea, String historiaUsuarioId) {
         this.tareaId = tareaId;
         this.desarrolladorId = desarrolladorId;
         this.nombreTarea = nombreTarea;
@@ -46,7 +46,7 @@ public class Tarea {
         this.estadoTarea = estadoTarea;
         this.descripcionTarea = descripcionTarea;
         this.historiaUsuarioId=historiaUsuarioId;
-    }
+    }*/
 
     public String getTareaId() {
         return tareaId;

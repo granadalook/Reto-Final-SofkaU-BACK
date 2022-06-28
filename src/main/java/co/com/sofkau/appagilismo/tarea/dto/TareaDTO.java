@@ -5,9 +5,7 @@ import java.util.List;
 
 public class TareaDTO {
 
-    private String tareaId;
-
-    @NotBlank
+    @NotBlank(message = "Debe existir el desarrolladorId para este objeto.")
     private String desarrolladorId;
 
     @NotBlank
@@ -21,33 +19,15 @@ public class TareaDTO {
     @NotBlank
     private String historiaUsuarioId;
 
-    public TareaDTO (){
-
-    }
-
-    public TareaDTO(String tareaId,String desarrolladorId, String nombreTarea, boolean estadoTarea, String descripcionTarea, String historiaUsuarioId) {
-        this.tareaId=tareaId;
-        this.desarrolladorId = desarrolladorId;
-        this.nombreTarea = nombreTarea;
-        this.estadoTarea = estadoTarea;
-        this.descripcionTarea = descripcionTarea;
-        this.historiaUsuarioId=historiaUsuarioId;
+    public TareaDTO() {
     }
 
     public TareaDTO(String desarrolladorId, String nombreTarea, boolean estadoTarea, String descripcionTarea, String historiaUsuarioId) {
-        this.desarrolladorId = desarrolladorId;
+        this.desarrolladorId=desarrolladorId;
         this.nombreTarea = nombreTarea;
         this.estadoTarea = estadoTarea;
         this.descripcionTarea = descripcionTarea;
-        this.historiaUsuarioId=historiaUsuarioId;
-    }
-
-    public String getTareaId() {
-        return tareaId;
-    }
-
-    public void setTareaId(String tareaId) {
-        this.tareaId = tareaId;
+        this.historiaUsuarioId = historiaUsuarioId;
     }
 
     public String getDesarrolladorId() {

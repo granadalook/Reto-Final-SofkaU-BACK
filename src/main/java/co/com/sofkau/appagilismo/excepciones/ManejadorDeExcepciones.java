@@ -1,11 +1,14 @@
 package co.com.sofkau.appagilismo.excepciones;
 
-import com.fasterxml.jackson.core.json.async.NonBlockingJsonParser;
+import co.com.sofkau.appagilismo.usuario.casos_de_uso.LogInCasoDeUso;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.web.WebProperties.Resources;
 import org.springframework.boot.autoconfigure.web.reactive.error.AbstractErrorWebExceptionHandler;
 import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.reactive.error.ErrorAttributes;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.codec.ServerCodecConfigurer;
@@ -23,33 +26,33 @@ import java.util.Map;
 import java.util.Optional;
 
 @Component
-public class ManejadorDeExcepciones extends AbstractErrorWebExceptionHandler {
+@Order(-2)
+public class ManejadorDeExcepciones extends AbstractErrorWebExceptionHandler{
 
-    public ManejadorDeExcepciones(ErrorAttributes errorAttributes, Resources resources, ApplicationContext applicationContext, ServerCodecConfigurer configurer){
-        super(errorAttributes,resources,applicationContext);
+    private static final Logger log = LoggerFactory.getLogger(ManejadorDeExcepciones.class);
+    public ManejadorDeExcepciones(ErrorAttributes errorAttributes, Resources resources, ApplicationContext applicationContext, ServerCodecConfigurer configurer) {
+        super(errorAttributes, resources, applicationContext);
         this.setMessageWriters(configurer.getWriters());
         this.setMessageReaders(configurer.getReaders());
     }
 
     @Override
     protected RouterFunction<ServerResponse> getRoutingFunction(ErrorAttributes errorAttributes) {
-       return RouterFunctions.route(RequestPredicates.all(), this::renderErrorResponseBadRequest);
+        return RouterFunctions.route(RequestPredicates.all(), this::renderErrorResponseBadRequest);
     }
 
-    private Mono<ServerResponse> renderErrorResponseBadRequest(ServerRequest request){
+    private Mono<ServerResponse> renderErrorResponseBadRequest(ServerRequest request) {
         Map<String, Object> errorProperties = getErrorAttributes(request, ErrorAttributeOptions.defaults());
-        int status = (int) Optional.ofNullable(errorProperties.get("status")).orElse(400);
-        if (status == 404){
+        int status = (int) errorProperties.get("status");
+        if (status == 400) {
+            return ServerResponse.status(HttpStatus.BAD_REQUEST).contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromValue(errorProperties));
+        }
+        if (status == 404) {
             return ServerResponse.status(HttpStatus.NOT_FOUND).contentType(MediaType.APPLICATION_JSON)
                     .body(BodyInserters.fromValue(errorProperties));
         }
-        //if ( status == 400) {
-            return ServerResponse.status(HttpStatus.BAD_REQUEST).contentType(MediaType.APPLICATION_JSON)
-                    .body(BodyInserters.fromValue(errorProperties));
-       // }
-        /*return ServerResponse.status(HttpStatus.INTERNAL_SERVER_ERROR).contentType(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromValue(errorProperties));*/
-
+        return ServerResponse.status(HttpStatus.INTERNAL_SERVER_ERROR).contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromValue(errorProperties));
     }
-
 }

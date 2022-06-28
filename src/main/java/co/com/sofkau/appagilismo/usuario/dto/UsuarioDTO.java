@@ -1,8 +1,5 @@
 package co.com.sofkau.appagilismo.usuario.dto;
 
-import co.com.sofkau.appagilismo.usuario.coleccion.Usuario;
-import reactor.core.publisher.Mono;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;

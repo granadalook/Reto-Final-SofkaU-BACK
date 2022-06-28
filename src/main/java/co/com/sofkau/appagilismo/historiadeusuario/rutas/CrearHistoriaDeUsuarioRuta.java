@@ -5,7 +5,6 @@ import co.com.sofkau.appagilismo.historiadeusuario.casos_de_uso.ListarHistoriasD
 import co.com.sofkau.appagilismo.historiadeusuario.dto.HistoriaDeUsuarioDTO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.repository.query.ReactiveQueryByExampleExecutor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -22,10 +21,10 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @Configuration
-public class HistoriaDeUsuarioRutas {
+public class CrearHistoriaDeUsuarioRuta {
 
     @Bean
-    public RouterFunction<ServerResponse> create(CrearHistoriaDeUsuarioCasoDeUso crearHistoriaDeUsuarioCasoDeUso){
+    public RouterFunction<ServerResponse> crearHistoriaDeUsuario(CrearHistoriaDeUsuarioCasoDeUso crearHistoriaDeUsuarioCasoDeUso){
         Function<HistoriaDeUsuarioDTO, Mono<ServerResponse>> crearHistoriaDeUsuario = historiaDeUsuarioDTO -> crearHistoriaDeUsuarioCasoDeUso.crearHistoriaDeUsuario(historiaDeUsuarioDTO)
                 .flatMap(resultado -> ServerResponse.status(HttpStatus.CREATED)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -34,15 +33,6 @@ public class HistoriaDeUsuarioRutas {
         return route(POST("/historia/crear").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(HistoriaDeUsuarioDTO.class)
                         .flatMap(crearHistoriaDeUsuario)
-                );
-    }
-
-    @Bean
-    public RouterFunction<ServerResponse> obtenerTodasLasHistoriasDeUsuario(ListarHistoriasDeUsuarioCasoDeUso listarHistoriasDeUsuarioCasoDeUso){
-        return route(GET("historia/obtenerTodas").and(accept(APPLICATION_JSON)),
-                request -> ServerResponse.ok()
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(BodyInserters.fromPublisher(listarHistoriasDeUsuarioCasoDeUso.get(), HistoriaDeUsuarioDTO.class))
                 );
     }
 }

@@ -8,5 +8,5 @@ import reactor.core.publisher.Flux;
 @Repository
 public interface HistoriaDeUsuarioRepositorio  extends ReactiveMongoRepository<HistoriaDeUsuario, String>{
 
-    Flux<HistoriaDeUsuario> buscarPorUsuarioId(String usuarioId);
+    //Flux<HistoriaDeUsuario> buscarPorUsuarioId(String usuarioId);
 }

@@ -9,8 +9,8 @@ import reactor.core.publisher.Mono;
 @Repository
 public interface TareaRepositorio extends ReactiveMongoRepository<Tarea, String> {
 
-    Mono<Void> eliminarPorHistoriaUsuarioId(String historiaUsuarioId);
+    Mono<Void> deleteByHistoriaUsuarioId(String historiaUsuarioId);
 
-    Flux<Tarea> encontrarTodasPorHistoriaDeUsuarioId(String id);
+    Flux<Tarea> findAllByHistoriaUsuarioId(String historiaUsuarioId);
 
 }

@@ -42,7 +42,7 @@ public class AsociarHistoriaDeUsuarioCasoDeUso implements Function<String, Mono<
     private Function<HistoriaDeUsuarioDTO, Mono<HistoriaDeUsuarioDTO>> mapperHistoriaDeUsuarioAgregado(){
         return historiaDeUsuarioDTO ->
                 Mono.just(historiaDeUsuarioDTO).zipWith(
-                        tareaRepositorio.encontrarTodasPorHistoriaDeUsuarioId(historiaDeUsuarioDTO.getHistoriaUsuarioId())
+                        tareaRepositorio.findAllByHistoriaUsuarioId(historiaDeUsuarioDTO.getHistoriaUsuarioId())
                                 .map(mapperTarea.mapperATareaDTO())
                                 .collectList(),
                         (historiaDeUsuario, tareas) -> {

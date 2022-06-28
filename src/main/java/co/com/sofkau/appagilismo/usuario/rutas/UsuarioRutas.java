@@ -37,15 +37,25 @@ public class UsuarioRutas {
     }
     @Bean
     public RouterFunction<ServerResponse> Login(LogInCasoDeUso logInCasoDeUso){
-                Function<UsuarioLogin, Mono<ServerResponse>> logIn = usuarioLogin -> logInCasoDeUso.logIn(usuarioLogin)
+        Function<UsuarioLogin, Mono<ServerResponse>> logIn = usuarioLogin -> logInCasoDeUso.logIn(usuarioLogin)
                 .flatMap(resultado -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .bodyValue(resultado)
                 );
-            return route(POST("/usuario/login").and(accept(MediaType.APPLICATION_JSON)),
-                    request -> request.bodyToMono(UsuarioLogin.class)
-                            .flatMap(logIn)
-            );
+
+        return route(POST("/login").and(accept(MediaType.APPLICATION_JSON)),
+                request -> request.bodyToMono(UsuarioLogin.class)
+                        .flatMap(logIn)
+                            /*.flatMap(dato -> {
+                                Optional<String> email = request.queryParam("email");
+                                Optional<String> password = request.queryParam("password");
+                                if(email.isEmpty() || password.equals(null)){
+                                    log.info("entro al if {}");
+                                    throw  new ExcepcionPersonalizadaInternalServerError("Email o contraseña vacío");
+                                }
+                                throw new ExcepcionPersonalizadaInternalServerError("Formato de email invalido");
+                            })*/
+        );
     }
 
 }

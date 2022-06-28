@@ -20,7 +20,6 @@ public class CrearTareaCasoDeUso implements CrearTareaInterface {
 
     private final TareaRepositorio tareaRepositorio;
     private final MapperTarea mapperTarea;
-
     private final AsociarHistoriaDeUsuarioCasoDeUso asociarHistoriaDeUsuarioCasoDeUso;
 
     public CrearTareaCasoDeUso(TareaRepositorio tareaRepositorio, MapperTarea mapperTarea, AsociarHistoriaDeUsuarioCasoDeUso asociarHistoriaDeUsuarioCasoDeUso) {

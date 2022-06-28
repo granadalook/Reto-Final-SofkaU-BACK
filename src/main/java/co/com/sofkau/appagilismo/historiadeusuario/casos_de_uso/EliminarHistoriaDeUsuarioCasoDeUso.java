@@ -26,6 +26,6 @@ public class EliminarHistoriaDeUsuarioCasoDeUso implements Function<String, Mono
     public Mono<Void> apply(String historiaUsuarioId) {
         Objects.requireNonNull(historiaUsuarioId, "Id es campo obligatorio.");
         return repositorio.deleteById(historiaUsuarioId)
-                .switchIfEmpty(Mono.defer(() -> tareaRepositorio.eliminarPorHistoriaUsuarioId(historiaUsuarioId)));
+                .switchIfEmpty(Mono.defer(() -> tareaRepositorio.deleteByHistoriaUsuarioId(historiaUsuarioId)));
     }
 }

@@ -13,7 +13,6 @@ public class TareaDTO {
     @NotBlank
     private String nombreTarea;
 
-    @NotBlank
     private boolean estadoTarea;
 
     @NotBlank

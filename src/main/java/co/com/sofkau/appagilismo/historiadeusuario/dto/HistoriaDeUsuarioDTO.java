@@ -1,14 +1,10 @@
 package co.com.sofkau.appagilismo.historiadeusuario.dto;
 
-import co.com.sofkau.appagilismo.tarea.colleccion.Tarea;
 import co.com.sofkau.appagilismo.tarea.dto.TareaDTO;
-
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 public class HistoriaDeUsuarioDTO {
-
-
     private String historiaUsuarioId;
 
     @NotBlank

@@ -8,23 +8,23 @@ import reactor.core.publisher.Mono;
 import java.util.Objects;
 import java.util.function.Function;
 
-/*@Service
+@Service
 @Validated
 public class EliminarHistoriaDeUsuarioCasoDeUso implements Function<String, Mono<Void>> {
 
     private final HistoriaDeUsuarioRepositorio repositorio;
 
-    //private final TareaRepositorio tareaRepositorio;
+    private final TareaRepositorio tareaRepositorio;
 
-    public EliminarHistoriaDeUsuarioCasoDeUso(HistoriaDeUsuarioRepositorio repositorio){ // añadir dentro TareaRepositorio tareaRepositorio
+    public EliminarHistoriaDeUsuarioCasoDeUso(HistoriaDeUsuarioRepositorio repositorio, TareaRepositorio tareaRepositorio){
         this.repositorio = repositorio;
-        //this.tareaRepositorio=tareaRepositorio;
+        this.tareaRepositorio=tareaRepositorio;
     }
 
-    *//*@Override
+    @Override
     public Mono<Void> apply(String id) {
         Objects.requireNonNull(id, "Id es campo obligatorio.");
         return repositorio.deleteById(id)
                 .switchIfEmpty(Mono.defer(() -> tareaRepositorio.eliminarPorHistoriaUsuarioId(id)));
-    }*//*
-}*/
+    }
+}

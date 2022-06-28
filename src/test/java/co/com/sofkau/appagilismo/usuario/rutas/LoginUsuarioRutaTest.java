@@ -21,8 +21,8 @@ import static org.mockito.Mockito.verify;
 
 @WebFluxTest
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {LoginRuta.class, LogInCasoDeUso.class})
-class LoginRutaTest {
+@ContextConfiguration(classes = {LoginUsuarioRuta.class, LogInCasoDeUso.class})
+class LoginUsuarioRutaTest {
 
     @MockBean
     private UsuarioRepositorio repositorio;

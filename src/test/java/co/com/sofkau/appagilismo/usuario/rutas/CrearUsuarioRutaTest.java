@@ -24,8 +24,8 @@ import static reactor.core.publisher.Mono.when;
 
 @WebFluxTest
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {UsuarioRutas.class, CrearUsuarioCasoDeUso.class, MapperUsuario.class})
-class UsuarioRutasTest {
+@ContextConfiguration(classes = {CrearUsuarioRuta.class, CrearUsuarioCasoDeUso.class, MapperUsuario.class})
+class CrearUsuarioRutaTest {
 
     @MockBean
     private UsuarioRepositorio repositorio;

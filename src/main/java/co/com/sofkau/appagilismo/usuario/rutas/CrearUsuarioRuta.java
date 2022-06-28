@@ -1,7 +1,6 @@
-package co.com.sofkau.appagilismo.proyecto.rutas;
+package co.com.sofkau.appagilismo.usuario.rutas;
 
-import co.com.sofkau.appagilismo.proyecto.casos_de_uso.CrearProyectoCasoDeUso;
-import co.com.sofkau.appagilismo.proyecto.dto.ProyectoDTO;
+import co.com.sofkau.appagilismo.usuario.casos_de_uso.CrearUsuarioCasoDeUso;
 import co.com.sofkau.appagilismo.usuario.dto.UsuarioDTO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,18 +16,18 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @Configuration
-public class ProyectoRutas {
+public class CrearUsuarioRuta {
 
     @Bean
-    public RouterFunction<ServerResponse> crearProyecto(CrearProyectoCasoDeUso crearProyectoCasoDeUso){
-        Function<ProyectoDTO, Mono<ServerResponse>> crearProyecto = proyectoDTO -> crearProyectoCasoDeUso.crearProyecto(proyectoDTO)
+    public RouterFunction<ServerResponse> crearUsuario(CrearUsuarioCasoDeUso crearUsuarioCasoDeUso){
+        Function<UsuarioDTO, Mono<ServerResponse>> crearUsuario = usuarioDTO -> crearUsuarioCasoDeUso.crearUsuario(usuarioDTO)
                 .flatMap(resultado -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .bodyValue(resultado)
                 );
-        return route(POST("/proyecto/crear").and(accept(MediaType.APPLICATION_JSON)),
-                request -> request.bodyToMono(ProyectoDTO.class)
-                        .flatMap(crearProyecto)
-                );
+        return route(POST("/usuario/crear").and(accept(MediaType.APPLICATION_JSON)),
+            request -> request.bodyToMono(UsuarioDTO.class)
+                    .flatMap(crearUsuario)
+        );
     }
 }

@@ -16,7 +16,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @Configuration
-public class LoginRuta {
+public class LoginUsuarioRuta {
 
     @Bean
     public RouterFunction<ServerResponse> Login(LogInCasoDeUso logInCasoDeUso) {

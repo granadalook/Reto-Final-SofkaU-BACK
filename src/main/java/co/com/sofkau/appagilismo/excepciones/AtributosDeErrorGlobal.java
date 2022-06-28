@@ -25,13 +25,10 @@ public class AtributosDeErrorGlobal extends DefaultErrorAttributes {
         errorAttributes.put("path", request.path());
         errorAttributes.put("status", errorStatus.value());
         errorAttributes.put("error", errorStatus.getReasonPhrase());
-        errorAttributes.put("causa", error.getCause());
         return errorAttributes;
     }
 
     private HttpStatus determineHttpStatus(Throwable error, MergedAnnotation<ResponseStatus> responseStatusAnnotation) {
-        return error instanceof ResponseStatusException ? ((ResponseStatusException) error).getStatus() : (HttpStatus) responseStatusAnnotation.getValue("code", HttpStatus.class).orElse(HttpStatus.BAD_REQUEST);
+        return error instanceof ResponseStatusException ? ((ResponseStatusException) error).getStatus() : (HttpStatus) responseStatusAnnotation.getValue("code", HttpStatus.class).orElse(HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
-
 }

@@ -1,7 +1,5 @@
 package co.com.sofkau.appagilismo.proyecto.dto;
 
-import co.com.sofkau.appagilismo.proyecto.coleccion.Proyecto;
-
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;

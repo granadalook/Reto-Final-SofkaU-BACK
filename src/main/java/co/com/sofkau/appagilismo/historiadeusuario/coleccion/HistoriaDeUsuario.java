@@ -103,7 +103,12 @@ public class HistoriaDeUsuario {
     }
 
     public void setPorcentajeDeAvance(Integer porcentajeDeAvance) {
-        this.porcentajeDeAvance = porcentajeDeAvance;
+        if(porcentajeDeAvance == null){
+            this.porcentajeDeAvance=0;
+        }
+        else{
+            this.porcentajeDeAvance = porcentajeDeAvance;
+        }
     }
 
     public String getLiderTecnicoId() {

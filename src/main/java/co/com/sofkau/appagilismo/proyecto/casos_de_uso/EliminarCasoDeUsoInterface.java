@@ -5,5 +5,5 @@ import reactor.core.publisher.Mono;
 @FunctionalInterface
 public interface EliminarCasoDeUsoInterface {
 
-    Mono<Void> eliminarProyecto(String idProyecto);
+    Mono<Void> deleteProyectoById(String idProyecto);
 }

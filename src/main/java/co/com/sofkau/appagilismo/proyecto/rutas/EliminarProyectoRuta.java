@@ -22,7 +22,7 @@ public class EliminarProyectoRuta {
                 request -> ServerResponse.accepted()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(
-                                eliminarProyectoCasoDeUso.eliminarProyecto(request.pathVariable("id")),
+                                eliminarProyectoCasoDeUso.deleteProyectoById(request.pathVariable("id")),
                                 Void.class)));
     }
 }

@@ -21,23 +21,13 @@ public class Proyecto {
     @NotBlank
     private String liderTecnicoId;
 
-    private List<String> desarrolladorId;
-
     public Proyecto() {}
 
-    public Proyecto(String proyectoId, String nombre, String arquitectoId, String liderTecnicoId, List<String> desarrolladorId) {
+    public Proyecto(String proyectoId, String nombre, String arquitectoId, String liderTecnicoId) {
         this.proyectoId = proyectoId;
         this.nombre = nombre;
         this.arquitectoId = arquitectoId;
         this.liderTecnicoId = liderTecnicoId;
-        this.desarrolladorId = desarrolladorId;
-    }
-
-    public Proyecto(String nombre, String arquitectoId, String liderTecnicoId, List<String> desarrolladorId) {
-        this.nombre = nombre;
-        this.arquitectoId = arquitectoId;
-        this.liderTecnicoId = liderTecnicoId;
-        this.desarrolladorId = desarrolladorId;
     }
 
     public Proyecto(String nombre, String arquitectoId, String liderTecnicoId) {
@@ -76,13 +66,5 @@ public class Proyecto {
 
     public void setLiderTecnicoId(String liderTecnicoId) {
         this.liderTecnicoId = liderTecnicoId;
-    }
-
-    public List<String> getDesarrolladorId() {
-        return desarrolladorId;
-    }
-
-    public void setDesarrolladorId(List<String> desarrolladorId) {
-        this.desarrolladorId.add(String.valueOf(desarrolladorId));
     }
 }

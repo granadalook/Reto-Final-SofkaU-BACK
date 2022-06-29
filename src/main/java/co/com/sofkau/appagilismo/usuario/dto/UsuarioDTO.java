@@ -1,5 +1,8 @@
 package co.com.sofkau.appagilismo.usuario.dto;
 
+import co.com.sofkau.appagilismo.historiadeusuario.dto.HistoriaDeUsuarioDTO;
+import co.com.sofkau.appagilismo.proyecto.dto.ProyectoDTO;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
@@ -23,25 +26,29 @@ public class UsuarioDTO {
     @NotBlank
     private String rol;
 
-    private List<String> proyectosAsociados;
+    private List<String> idProyectosAsociados;
 
-    private List<String> historiasDeUsuario;
+    private List<ProyectoDTO> proyectosAsociados;
+
+    private List<HistoriaDeUsuarioDTO> historiasDeUsuario;
 
     public UsuarioDTO() {}
 
-    public UsuarioDTO(String usuarioId, String nombreCompleto, String email, String password, String rol) {
+    public UsuarioDTO(String usuarioId, String nombreCompleto, String email, String password, String rol, List<String> idProyectosAsociados) {
         this.usuarioId=usuarioId;
         this.nombreCompleto = nombreCompleto;
         this.email = email;
         this.password = password;
         this.rol=rol;
+        this.idProyectosAsociados = Optional.ofNullable(idProyectosAsociados).orElse(new ArrayList<>());
     }
 
-    public UsuarioDTO(String nombreCompleto, String email, String password) {
+    public UsuarioDTO(String nombreCompleto, String email, String password, String rol, List<String> idProyectosAsociados) {
         this.nombreCompleto = nombreCompleto;
         this.email = email;
         this.password = password;
         this.rol=rol;
+        this.idProyectosAsociados = Optional.ofNullable(idProyectosAsociados).orElse(new ArrayList<>());
     }
 
     public UsuarioDTO(String email, String password) {
@@ -49,22 +56,30 @@ public class UsuarioDTO {
         this.password = password;
     }
 
-    public List<String> getProyectosAsociados() {
+    public List<ProyectoDTO> getProyectosAsociados() {
         this.proyectosAsociados = Optional.ofNullable(proyectosAsociados).orElse(new ArrayList<>());
         return proyectosAsociados;
     }
 
+    public List<String> getIdProyectosAsociados() {
+        this.idProyectosAsociados = Optional.ofNullable(idProyectosAsociados).orElse(new ArrayList<>());
+        return idProyectosAsociados;
+    }
 
-    public void setProyectosAsociados(List<String> proyectosAsociados) {
+    public void setIdProyectosAsociados(List<String> idProyectosAsociados) {
+        this.idProyectosAsociados = idProyectosAsociados;
+    }
+
+    public void setProyectosAsociados(List<ProyectoDTO> proyectosAsociados) {
         this.proyectosAsociados = proyectosAsociados;
     }
 
-    public List<String> getHistoriasDeUsuario() {
+    public List<HistoriaDeUsuarioDTO> getHistoriasDeUsuario() {
         this.historiasDeUsuario = Optional.ofNullable(historiasDeUsuario).orElse(new ArrayList<>());
         return historiasDeUsuario;
     }
 
-    public void setHistoriasDeUsuario(List<String> historiasDeUsuario) {
+    public void setHistoriasDeUsuario(List<HistoriaDeUsuarioDTO> historiasDeUsuario) {
         this.historiasDeUsuario = historiasDeUsuario;
     }
 

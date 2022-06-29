@@ -19,6 +19,12 @@ public class HistoriaDeUsuario {
     private String estimacion;
 
     @NotBlank
+    private boolean estado;
+
+    @NotBlank
+    private Integer porcentajeDeAvance;
+
+    @NotBlank
     private String liderTecnicoId;
 
     @NotBlank
@@ -30,19 +36,23 @@ public class HistoriaDeUsuario {
     public HistoriaDeUsuario() {
     }
 
-    public HistoriaDeUsuario(String historiaUsuarioId,String tituloHistoriaUsuario, String descripcion, String estimacion, String liderTecnicoId, String desarrolladorId,String proyectoId) {
+    public HistoriaDeUsuario(String historiaUsuarioId,String tituloHistoriaUsuario, String descripcion, String estimacion, boolean estado, Integer porcentajeDeAvance, String liderTecnicoId, String desarrolladorId,String proyectoId) {
         this.historiaUsuarioId = historiaUsuarioId;
         this.tituloHistoriaUsuario=tituloHistoriaUsuario;
         this.descripcion = descripcion;
         this.estimacion=estimacion;
+        this.estado=estado;
+        this.porcentajeDeAvance=porcentajeDeAvance;
         this.liderTecnicoId=liderTecnicoId;
         this.desarrolladorId = desarrolladorId;
         this.proyectoId=proyectoId;
     }
 
-    public HistoriaDeUsuario(String tituloHistoriaUsuario,String estimacion,String liderTecnicoId, String desarrolladorId, String proyectoId) {
+    public HistoriaDeUsuario(String tituloHistoriaUsuario,String estimacion, boolean estado, Integer porcentajeDeAvance,String liderTecnicoId, String desarrolladorId, String proyectoId) {
         this.tituloHistoriaUsuario=tituloHistoriaUsuario;
         this.estimacion = estimacion;
+        this.estado=estado;
+        this.porcentajeDeAvance=porcentajeDeAvance;
         this.liderTecnicoId = liderTecnicoId;
         this.desarrolladorId = desarrolladorId;
         this.proyectoId=proyectoId;
@@ -78,6 +88,22 @@ public class HistoriaDeUsuario {
 
     public void setEstimacion(String estimacion) {
         this.estimacion = estimacion;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public Integer getPorcentajeDeAvance() {
+        return porcentajeDeAvance;
+    }
+
+    public void setPorcentajeDeAvance(Integer porcentajeDeAvance) {
+        this.porcentajeDeAvance = porcentajeDeAvance;
     }
 
     public String getLiderTecnicoId() {

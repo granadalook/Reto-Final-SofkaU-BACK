@@ -36,28 +36,6 @@ public class HistoriaDeUsuario {
     public HistoriaDeUsuario() {
     }
 
-    public HistoriaDeUsuario(String historiaUsuarioId,String tituloHistoriaUsuario, String descripcion, String estimacion, boolean estado, Integer porcentajeDeAvance, String liderTecnicoId, String desarrolladorId,String proyectoId) {
-        this.historiaUsuarioId = historiaUsuarioId;
-        this.tituloHistoriaUsuario=tituloHistoriaUsuario;
-        this.descripcion = descripcion;
-        this.estimacion=estimacion;
-        this.estado=estado;
-        this.porcentajeDeAvance=porcentajeDeAvance;
-        this.liderTecnicoId=liderTecnicoId;
-        this.desarrolladorId = desarrolladorId;
-        this.proyectoId=proyectoId;
-    }
-
-    public HistoriaDeUsuario(String tituloHistoriaUsuario,String estimacion, boolean estado, Integer porcentajeDeAvance,String liderTecnicoId, String desarrolladorId, String proyectoId) {
-        this.tituloHistoriaUsuario=tituloHistoriaUsuario;
-        this.estimacion = estimacion;
-        this.estado=estado;
-        this.porcentajeDeAvance=porcentajeDeAvance;
-        this.liderTecnicoId = liderTecnicoId;
-        this.desarrolladorId = desarrolladorId;
-        this.proyectoId=proyectoId;
-    }
-
     public String getHistoriaUsuarioId() {
         return historiaUsuarioId;
     }

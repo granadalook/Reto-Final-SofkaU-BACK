@@ -62,72 +62,36 @@ public class HistoriaDeUsuarioDTO {
         return historiaUsuarioId;
     }
 
-    public void setHistoriaUsuarioId(String historiaUsuarioId) {
-        this.historiaUsuarioId = historiaUsuarioId;
-    }
-
     public String getTituloHistoriaUsuario() {
         return tituloHistoriaUsuario;
-    }
-
-    public void setTituloHistoriaUsuario(String tituloHistoriaUsuario) {
-        this.tituloHistoriaUsuario = tituloHistoriaUsuario;
     }
 
     public String getDescripcion() {
         return descripcion;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public String getEstimacion() {
         return estimacion;
-    }
-
-    public void setEstimacion(String estimacion) {
-        this.estimacion = estimacion;
     }
 
     public boolean isEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
-
     public Integer getPorcentajeDeAvance() {
         return porcentajeDeAvance;
-    }
-
-    public void setPorcentajeDeAvance(Integer porcentajeDeAvance) {
-        this.porcentajeDeAvance = porcentajeDeAvance;
     }
 
     public String getLiderTecnicoId() {
         return liderTecnicoId;
     }
 
-    public void setLiderTecnicoId(String liderTecnicoId) {
-        this.liderTecnicoId = liderTecnicoId;
-    }
-
     public String getDesarrolladorId() {
         return desarrolladorId;
     }
 
-    public void setDesarrolladorId(String desarrolladorId) {
-        this.desarrolladorId = desarrolladorId;
-    }
-
     public String getProyectoId() {
         return proyectoId;
-    }
-
-    public void setProyectoId(String proyectoId) {
-        this.proyectoId = proyectoId;
     }
 
     public List<TareaDTO> getTareas()

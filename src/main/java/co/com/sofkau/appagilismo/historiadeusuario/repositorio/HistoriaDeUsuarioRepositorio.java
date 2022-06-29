@@ -8,6 +8,4 @@ import reactor.core.publisher.Mono;
 @Repository
 public interface HistoriaDeUsuarioRepositorio  extends ReactiveMongoRepository<HistoriaDeUsuario, String>{
     Mono<Void> eliminarByProyectoId(String idProyecto);
-    Mono<Void> eliminarByTareaId(String tareaId);
-
 }

@@ -22,7 +22,7 @@ public class ListarHistoriasPorUsuarioIdRuta {
         return route(GET("/historia/obtenerPorUsuarioId/{usuarioId}").and(accept(APPLICATION_JSON)),
                 request -> ServerResponse.ok()
                         .contentType(APPLICATION_JSON)
-                                .body(BodyInserters.fromPublisher(listarHistoriasPorUsuarioIdCasoDeUso.apply(request.pathVariable("ususarioId")),
+                                .body(BodyInserters.fromPublisher(listarHistoriasPorUsuarioIdCasoDeUso.apply(request.pathVariable("usuarioId")),
                                         HistoriaDeUsuarioDTO.class
                                         ))
                 );

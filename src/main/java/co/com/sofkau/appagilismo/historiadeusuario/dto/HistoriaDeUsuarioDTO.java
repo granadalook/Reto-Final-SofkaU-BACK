@@ -26,7 +26,7 @@ public class HistoriaDeUsuarioDTO {
     private String liderTecnicoId;
 
     @NotBlank
-    private String desarrolladorId;
+    private String creadoPor;
 
     @NotBlank
     private String proyectoId;
@@ -36,7 +36,7 @@ public class HistoriaDeUsuarioDTO {
     public HistoriaDeUsuarioDTO() {
     }
 
-    public HistoriaDeUsuarioDTO(String historiaUsuarioId,String tituloHistoriaUsuario, String descripcion, String estimacion, boolean estado, Integer porcentajeDeAvance,  String liderTecnicoId, String desarrolladorId , String proyectoId) {
+    public HistoriaDeUsuarioDTO(String historiaUsuarioId,String tituloHistoriaUsuario, String descripcion, String estimacion, boolean estado, Integer porcentajeDeAvance,  String liderTecnicoId, String creadoPor , String proyectoId) {
         this.historiaUsuarioId = historiaUsuarioId;
         this.tituloHistoriaUsuario=tituloHistoriaUsuario;
         this.descripcion = descripcion;
@@ -44,16 +44,16 @@ public class HistoriaDeUsuarioDTO {
         this.estado=estado;
         this.porcentajeDeAvance=porcentajeDeAvance;
         this.liderTecnicoId=liderTecnicoId;
-        this.desarrolladorId=desarrolladorId;
+        this.creadoPor=creadoPor;
         this.proyectoId=proyectoId;
 
     }
 
-    public HistoriaDeUsuarioDTO(String tituloHistoriaUsuario, String estimacion, String liderTecnicoId, String desarrolladorId, String proyectoId) {
+    public HistoriaDeUsuarioDTO(String tituloHistoriaUsuario, String estimacion, String liderTecnicoId, String creadoPor, String proyectoId) {
         this.tituloHistoriaUsuario=tituloHistoriaUsuario;
         this.estimacion = estimacion;
         this.liderTecnicoId=liderTecnicoId;
-        this.desarrolladorId=desarrolladorId;
+        this.creadoPor=creadoPor;
         this.proyectoId=proyectoId;
 
     }
@@ -86,8 +86,8 @@ public class HistoriaDeUsuarioDTO {
         return liderTecnicoId;
     }
 
-    public String getDesarrolladorId() {
-        return desarrolladorId;
+    public String getCreadoPor() {
+        return creadoPor;
     }
 
     public String getProyectoId() {

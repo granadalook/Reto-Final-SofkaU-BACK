@@ -15,6 +15,7 @@ public class MapperHistoriaDeUsuario {
             var historiaDeUsuario = new HistoriaDeUsuario();
             historiaDeUsuario.setTituloHistoriaUsuario(updateHistoriaDeUsuario.getTituloHistoriaUsuario());
             historiaDeUsuario.setDescripcion(updateHistoriaDeUsuario.getDescripcion());
+            historiaDeUsuario.setEstimacion(updateHistoriaDeUsuario.getEstimacion());
             historiaDeUsuario.setLiderTecnicoId(updateHistoriaDeUsuario.getLiderTecnicoId());
             historiaDeUsuario.setDesarrolladorId(updateHistoriaDeUsuario.getDesarrolladorId());
             historiaDeUsuario.setProyectoId(updateHistoriaDeUsuario.getProyectoId());
@@ -27,6 +28,7 @@ public class MapperHistoriaDeUsuario {
                 entity.getHistoriaUsuarioId(),
                 entity.getTituloHistoriaUsuario(),
                 entity.getDescripcion(),
+                entity.getEstimacion(),
                 entity.getLiderTecnicoId(),
                 entity.getDesarrolladorId(),
                 entity.getProyectoId()

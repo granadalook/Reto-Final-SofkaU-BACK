@@ -10,8 +10,10 @@ public class HistoriaDeUsuarioDTO {
     @NotBlank
     private String tituloHistoriaUsuario;
 
-    @NotBlank
     private String descripcion;
+
+    @NotBlank
+    private String estimacion;
 
     @NotBlank
     private String liderTecnicoId;
@@ -27,18 +29,19 @@ public class HistoriaDeUsuarioDTO {
     public HistoriaDeUsuarioDTO() {
     }
 
-    public HistoriaDeUsuarioDTO(String tituloHistoriaUsuario, String historiaUsuarioId, String descripcion, String liderTecnicoId, String desarrolladorId , String proyectoId) {
+    public HistoriaDeUsuarioDTO(String historiaUsuarioId,String tituloHistoriaUsuario, String descripcion, String estimacion,  String liderTecnicoId, String desarrolladorId , String proyectoId) {
         this.historiaUsuarioId = historiaUsuarioId;
         this.tituloHistoriaUsuario=tituloHistoriaUsuario;
         this.descripcion = descripcion;
+        this.estimacion=estimacion;
         this.liderTecnicoId=liderTecnicoId;
         this.desarrolladorId=desarrolladorId;
         this.proyectoId=proyectoId;
     }
 
-    public HistoriaDeUsuarioDTO(String tituloHistoriaUsuario,String descripcion, String liderTecnicoId, String desarrolladorId, String proyectoId) {
+    public HistoriaDeUsuarioDTO(String tituloHistoriaUsuario, String estimacion, String liderTecnicoId, String desarrolladorId, String proyectoId) {
         this.tituloHistoriaUsuario=tituloHistoriaUsuario;
-        this.descripcion = descripcion;
+        this.estimacion = estimacion;
         this.liderTecnicoId=liderTecnicoId;
         this.desarrolladorId=desarrolladorId;
         this.proyectoId=proyectoId;
@@ -68,12 +71,12 @@ public class HistoriaDeUsuarioDTO {
         this.descripcion = descripcion;
     }
 
-    public String getProyectoId() {
-        return proyectoId;
+    public String getEstimacion() {
+        return estimacion;
     }
 
-    public void setProyectoId(String proyectoId) {
-        this.proyectoId = proyectoId;
+    public void setEstimacion(String estimacion) {
+        this.estimacion = estimacion;
     }
 
     public String getLiderTecnicoId() {
@@ -90,6 +93,14 @@ public class HistoriaDeUsuarioDTO {
 
     public void setDesarrolladorId(String desarrolladorId) {
         this.desarrolladorId = desarrolladorId;
+    }
+
+    public String getProyectoId() {
+        return proyectoId;
+    }
+
+    public void setProyectoId(String proyectoId) {
+        this.proyectoId = proyectoId;
     }
 
     public List<TareaDTO> getTareas() {

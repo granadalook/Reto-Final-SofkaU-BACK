@@ -22,10 +22,10 @@ public class CrearHistoriaDeUsuarioCasoDeUso implements CrearHistoriaDeUsuarioIn
     }
 
     @Override
-    public Mono<HistoriaDeUsuarioDTO> crearHistoriaDeUsuario(HistoriaDeUsuarioDTO historiaDeUsuarioDTO){
+    public Mono<String> crearHistoriaDeUsuario(HistoriaDeUsuarioDTO historiaDeUsuarioDTO){
         return repositorio
-                .save(mapperHistoriaDeUsuario.mapperAHistoriaDeUsuario().apply(historiaDeUsuarioDTO))
-                .map(historiaDeUsuario -> mapperHistoriaDeUsuario.mapperAHistoriaDeUsuarioDTO().apply(historiaDeUsuario));
+                .save(mapperHistoriaDeUsuario.mapperAHistoriaDeUsuario(null).apply(historiaDeUsuarioDTO))
+                .map(HistoriaDeUsuario::getHistoriaUsuarioId);
     }
 
 }

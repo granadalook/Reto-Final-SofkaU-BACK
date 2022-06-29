@@ -18,7 +18,6 @@ public class HistoriaDeUsuarioDTO {
 
     private boolean estado;
 
-    @NotBlank
     private Integer porcentajeDeAvance;
 
     @NotBlank

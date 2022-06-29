@@ -10,5 +10,7 @@ import reactor.core.publisher.Mono;
 public interface HistoriaDeUsuarioRepositorio  extends ReactiveMongoRepository<HistoriaDeUsuario, String>{
     Mono<Void> deleteByProyectoId(String idProyecto);
 
-    Flux<HistoriaDeUsuario> findAllByUsuarioId(String usuarioId);
+    Flux<HistoriaDeUsuario> findAllByLiderTecnicoId(String liderTecnicoId);
+
+    Flux<HistoriaDeUsuario> findAllByDesarrolladorId(String desarrolladorId);
 }

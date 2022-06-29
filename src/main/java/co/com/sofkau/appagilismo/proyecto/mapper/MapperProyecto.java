@@ -24,8 +24,7 @@ public class MapperProyecto {
                 proyectoDto.getProyectoId(),
                 proyectoDto.getNombre(),
                 proyectoDto.getArquitectoId(),
-                proyectoDto.getLiderTecnicoId(),
-                proyectoDto.getDesarrolladorId()
+                proyectoDto.getLiderTecnicoId()
         );
     }
 
@@ -35,7 +34,6 @@ public class MapperProyecto {
             proyecto.setNombre(proyectoActualizado.getNombre());
             proyecto.setArquitectoId(proyectoActualizado.getArquitectoId());
             proyecto.setLiderTecnicoId(proyectoActualizado.getLiderTecnicoId());
-            proyecto.setDesarrolladorId(proyectoActualizado.getDesarrolladorId());
             return proyecto;
         };
     }

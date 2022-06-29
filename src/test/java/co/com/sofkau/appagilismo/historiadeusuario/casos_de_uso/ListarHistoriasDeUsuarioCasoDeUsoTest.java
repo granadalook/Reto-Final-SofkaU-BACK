@@ -9,9 +9,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import reactor.core.publisher.Flux;
+import reactor.test.StepVerifier;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 class ListarHistoriasDeUsuarioCasoDeUsoTest {
@@ -39,26 +40,18 @@ class ListarHistoriasDeUsuarioCasoDeUsoTest {
         historiaDeUsuario1.setDescripcion("Descripcion de historia de usuario 1.");
         historiaDeUsuario1.setProyectoId("0010");
 
-        var historiaDeUsuario2 = new HistoriaDeUsuario();
-        historiaDeUsuario2.setUsuarioId("002");
-        historiaDeUsuario2.setHistoriaUsuarioId("002");
-        historiaDeUsuario2.setDescripcion("Descripcion de historia de usuario 2.");
-        historiaDeUsuario2.setProyectoId("0010");
+        when(repositorio.findAll()).thenReturn(Flux.just(historiaDeUsuario1));
 
-        //Flux.just(historiaDeUsuario1, historiaDeUsuario2);
+        StepVerifier.create(casoDeUso.get())
+                .expectNextMatches(historias -> {
+                    assert historias.getHistoriaUsuarioId().equalsIgnoreCase("001");
+                    assert historias.getUsuarioId().equalsIgnoreCase(historiaDeUsuario1.getUsuarioId());
+                    assert historias.getDescripcion().equalsIgnoreCase(historiaDeUsuario1.getDescripcion());
+                    assert historias.getProyectoId().equalsIgnoreCase("0010");
+                    return true;
+                })
+                .verifyComplete();
 
-        var historiaDeUsuario1DTO = new HistoriaDeUsuarioDTO();
-        historiaDeUsuario1DTO.setUsuarioId("002");
-        historiaDeUsuario1DTO.setHistoriaUsuarioId("001");
-        historiaDeUsuario1DTO.setDescripcion("Descripcion de historia de usuario 1.");
-        historiaDeUsuario1DTO.setProyectoId("0010");
-
-        var historiaDeUsuario2DTO = new HistoriaDeUsuarioDTO();
-        historiaDeUsuario2DTO.setUsuarioId("002");
-        historiaDeUsuario2DTO.setHistoriaUsuarioId("002");
-        historiaDeUsuario2DTO.setDescripcion("Descripcion de historia de usuario 2.");
-        historiaDeUsuario2DTO.setProyectoId("0010");
-
-        //Flux.just()
+        verify(repositorio).findAll();
     }
 }

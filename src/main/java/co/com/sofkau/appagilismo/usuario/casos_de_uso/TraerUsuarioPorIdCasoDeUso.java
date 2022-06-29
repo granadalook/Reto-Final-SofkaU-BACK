@@ -9,6 +9,7 @@ import co.com.sofkau.appagilismo.usuario.mapper.MapperUsuario;
 import co.com.sofkau.appagilismo.usuario.repositorio.UsuarioRepositorio;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
@@ -36,19 +37,20 @@ public class TraerUsuarioPorIdCasoDeUso implements TraerUsuarioPorIdInterface {
 
     public Mono<UsuarioDTO> traerUsuarioPorId(String id) {
         Objects.requireNonNull(id, "Id es requerido");
-        return usuarioRepositorio.findById(id).map(mapperUsuario.mapperAUsuarioDTO());
+        return usuarioRepositorio.findById(id).map(mapperUsuario.mapperAUsuarioDTO())
                 .flatMap(traerListaProyectos());
     }
 
     private Function<UsuarioDTO, Mono<UsuarioDTO>> traerListaProyectos() {
-        List<ProyectoDTO> lista = new ArrayList<>();
+
         return usuarioDTO -> Mono.just(usuarioDTO)
-                .zipWith(
-                        (usuarioDTO.getIdProyectosAsociados()
-                                .stream()
-                                .forEach(proyectos -> lista.add(traerProyectoPorIdcasoDeUso.apply(usuarioDTO.getUsuarioId())))),
+                .zipWith((
+                            Flux.fromStream(usuarioDTO.getIdProyectosAsociados().stream())
+                                    .flatMap(proyectoId -> traerProyectoPorIdcasoDeUso.apply(proyectoId))
+                                    .collectList()
+                        ),
                         (usuario, listaProyectos) -> {
-                            usuario.setProyectosAsociados(lista);
+                            usuario.setProyectosAsociados(listaProyectos);
                             return usuario;
                         });
     }

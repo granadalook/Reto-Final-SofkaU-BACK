@@ -14,7 +14,10 @@ public class HistoriaDeUsuario {
     private String descripcion;
 
     @NotBlank
-    private String usuarioId;
+    private String liderTecnicoId;
+
+    @NotBlank
+    private String desarrolladorId;
 
     @NotBlank
     private String proyectoId;
@@ -22,16 +25,18 @@ public class HistoriaDeUsuario {
     public HistoriaDeUsuario() {
     }
 
-    public HistoriaDeUsuario(String historiaUsuarioId, String descripcion, String usuarioId,String proyectoId) {
+    public HistoriaDeUsuario(String historiaUsuarioId, String descripcion, String liderTecnicoId, String desarrolladorId,String proyectoId) {
         this.historiaUsuarioId = historiaUsuarioId;
         this.descripcion = descripcion;
-        this.usuarioId = usuarioId;
+        this.liderTecnicoId=liderTecnicoId;
+        this.desarrolladorId = desarrolladorId;
         this.proyectoId=proyectoId;
     }
 
-    public HistoriaDeUsuario(String descripcion, String usuarioId, String proyectoId) {
+    public HistoriaDeUsuario(String descripcion,String liderTecnicoId, String desarrolladorId, String proyectoId) {
         this.descripcion = descripcion;
-        this.usuarioId = usuarioId;
+        this.liderTecnicoId = liderTecnicoId;
+        this.desarrolladorId = desarrolladorId;
         this.proyectoId=proyectoId;
     }
 
@@ -47,6 +52,14 @@ public class HistoriaDeUsuario {
         return descripcion;
     }
 
+    public String getLiderTecnicoId() {
+        return liderTecnicoId;
+    }
+
+    public void setLiderTecnicoId(String liderTecnicoId) {
+        this.liderTecnicoId = liderTecnicoId;
+    }
+
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
@@ -59,11 +72,11 @@ public class HistoriaDeUsuario {
         this.proyectoId = proyectoId;
     }
 
-    public String getUsuarioId() {
-        return usuarioId;
+    public String getDesarrolladorId() {
+        return desarrolladorId;
     }
 
-    public void setUsuarioId(String usuarioId) {
-        this.usuarioId = usuarioId;
+    public void setDesarrolladorId(String desarrolladorId) {
+        this.desarrolladorId = desarrolladorId;
     }
 }

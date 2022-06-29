@@ -8,5 +8,5 @@ import javax.validation.Valid;
 @FunctionalInterface
 public interface CrearHistoriaDeUsuarioInterface {
 
-    Mono<String> crearHistoriaDeUsuario(@Valid HistoriaDeUsuarioDTO historiaDeUsuarioDTO);
+    Mono<HistoriaDeUsuarioDTO> crearHistoriaDeUsuario(@Valid HistoriaDeUsuarioDTO historiaDeUsuarioDTO);
 }

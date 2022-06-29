@@ -25,9 +25,9 @@ public class ActualizarHistoriaDeUsuarioCasoDeUso implements CrearHistoriaDeUsua
     }
 
     @Override
-    public Mono<String> crearHistoriaDeUsuario(HistoriaDeUsuarioDTO historiaDeUsuarioDTO) {
+    public Mono<HistoriaDeUsuarioDTO> crearHistoriaDeUsuario(HistoriaDeUsuarioDTO historiaDeUsuarioDTO) {
         Objects.requireNonNull(historiaDeUsuarioDTO.getHistoriaUsuarioId(), "Id de la Historia De Usuario es requerido.");
         return repositorio.save(mapperHistoriaDeUsuario.mapperAHistoriaDeUsuario(historiaDeUsuarioDTO.getHistoriaUsuarioId()).apply(historiaDeUsuarioDTO))
-                .map(HistoriaDeUsuario::getHistoriaUsuarioId);
+                .map(mapperHistoriaDeUsuario.mapperAHistoriaDeUsuarioDTO());
     }
 }

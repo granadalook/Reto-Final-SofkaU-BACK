@@ -35,7 +35,7 @@ public class MapperProyecto {
             proyecto.setNombre(proyectoActualizado.getNombre());
             proyecto.setArquitectoId(proyectoActualizado.getArquitectoId());
             proyecto.setLiderTecnicoId(proyectoActualizado.getLiderTecnicoId());
-            proyecto.setDesarrolladorId(proyectoActualizado.getDesarrolladorId());
+            proyecto.setDesarrolladorId(proyectoActualizado.getUsuarios());
             return proyecto;
         };
     }

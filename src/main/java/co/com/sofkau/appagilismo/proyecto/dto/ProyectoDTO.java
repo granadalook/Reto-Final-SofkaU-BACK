@@ -2,7 +2,9 @@ package co.com.sofkau.appagilismo.proyecto.dto;
 
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class ProyectoDTO {
@@ -18,39 +20,27 @@ public class ProyectoDTO {
     @NotBlank
     private String liderTecnicoId;
 
-    private List<String> desarrolladorId;
+    private List<String> usuarios;
 
     private List<String> historias_de_usuarios;
 
-    public ProyectoDTO() {
+    public ProyectoDTO(String proyectoId, String nombre, Map<String, List<String>> usuariosId) {
     }
 
-    public ProyectoDTO(String proyectoId, String nombre, String arquitectoId, String liderTecnicoId) {
+    public ProyectoDTO(String proyectoId, String nombre) {
         this.proyectoId = proyectoId;
         this.nombre = nombre;
-        this.arquitectoId = arquitectoId;
-        this.liderTecnicoId = liderTecnicoId;
+        /*this.arquitectoId = arquitectoId;
+        this.liderTecnicoId = liderTecnicoId;*/
     }
 
-    public ProyectoDTO(String nombre, String arquitectoId, String liderTecnicoId) {
+    public ProyectoDTO(String nombre) {
         this.nombre = nombre;
-        this.arquitectoId = arquitectoId;
-        this.liderTecnicoId = liderTecnicoId;
-    }
-
-    public ProyectoDTO(String nombre, String arquitectoId, String liderTecnicoId, List<String> desarrolladorId) {
-        this.nombre = nombre;
-        this.arquitectoId = arquitectoId;
-        this.liderTecnicoId = liderTecnicoId;
-        this.desarrolladorId = Optional.ofNullable(desarrolladorId).orElse(new ArrayList<>());
+        /*this.arquitectoId = arquitectoId;
+        this.liderTecnicoId = liderTecnicoId;*/
     }
 
     public ProyectoDTO(String proyectoId, String nombre, String arquitectoId, String liderTecnicoId, List<String> desarrolladorId) {
-        this.proyectoId = proyectoId;
-        this.nombre = nombre;
-        this.arquitectoId = arquitectoId;
-        this.liderTecnicoId = liderTecnicoId;
-        this.desarrolladorId = Optional.ofNullable(desarrolladorId).orElse(new ArrayList<>());
     }
 
     public String getProyectoId() {
@@ -94,12 +84,12 @@ public class ProyectoDTO {
         this.liderTecnicoId = liderTecnicoId;
     }
 
-    public List<String> getDesarrolladorId() {
-        this.desarrolladorId = Optional.ofNullable(desarrolladorId).orElse(new ArrayList<>());
-        return desarrolladorId;
+    public List<String> getUsuarios() {
+        this.usuarios = Optional.ofNullable(usuarios).orElse(new ArrayList<>());
+        return usuarios;
     }
 
-    public void setDesarrolladorId(List<String> desarrolladorId) {
-        this.desarrolladorId = desarrolladorId;
+    public void setUsuarios(List<String> usuarios) {
+        this.usuarios = usuarios;
     }
 }

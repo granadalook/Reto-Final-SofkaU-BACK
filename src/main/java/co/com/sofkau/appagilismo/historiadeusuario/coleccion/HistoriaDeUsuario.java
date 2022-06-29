@@ -11,6 +11,9 @@ public class HistoriaDeUsuario {
     private String historiaUsuarioId;
 
     @NotBlank
+    private String tituloHistoriaUsuario;
+
+    @NotBlank
     private String descripcion;
 
     @NotBlank
@@ -25,19 +28,29 @@ public class HistoriaDeUsuario {
     public HistoriaDeUsuario() {
     }
 
-    public HistoriaDeUsuario(String historiaUsuarioId, String descripcion, String liderTecnicoId, String desarrolladorId,String proyectoId) {
+    public HistoriaDeUsuario(String historiaUsuarioId,String tituloHistoriaUsuario, String descripcion, String liderTecnicoId, String desarrolladorId,String proyectoId) {
         this.historiaUsuarioId = historiaUsuarioId;
+        this.tituloHistoriaUsuario=tituloHistoriaUsuario;
         this.descripcion = descripcion;
         this.liderTecnicoId=liderTecnicoId;
         this.desarrolladorId = desarrolladorId;
         this.proyectoId=proyectoId;
     }
 
-    public HistoriaDeUsuario(String descripcion,String liderTecnicoId, String desarrolladorId, String proyectoId) {
+    public HistoriaDeUsuario(String tituloHistoriaUsuario,String descripcion,String liderTecnicoId, String desarrolladorId, String proyectoId) {
+        this.tituloHistoriaUsuario=tituloHistoriaUsuario;
         this.descripcion = descripcion;
         this.liderTecnicoId = liderTecnicoId;
         this.desarrolladorId = desarrolladorId;
         this.proyectoId=proyectoId;
+    }
+
+    public String getTituloHistoriaUsuario() {
+        return tituloHistoriaUsuario;
+    }
+
+    public void setTituloHistoriaUsuario(String tituloHistoriaUsuario) {
+        this.tituloHistoriaUsuario = tituloHistoriaUsuario;
     }
 
     public String getHistoriaUsuarioId() {

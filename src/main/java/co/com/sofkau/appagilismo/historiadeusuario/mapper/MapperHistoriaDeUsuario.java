@@ -13,6 +13,7 @@ public class MapperHistoriaDeUsuario {
     public Function<HistoriaDeUsuarioDTO, HistoriaDeUsuario> mapperAHistoriaDeUsuario(){
         return updateHistoriaDeUsuario -> {
             var historiaDeUsuario = new HistoriaDeUsuario();
+            historiaDeUsuario.setTituloHistoriaUsuario(updateHistoriaDeUsuario.getTituloHistoriaUsuario());
             historiaDeUsuario.setDescripcion(updateHistoriaDeUsuario.getDescripcion());
             historiaDeUsuario.setLiderTecnicoId(updateHistoriaDeUsuario.getLiderTecnicoId());
             historiaDeUsuario.setDesarrolladorId(updateHistoriaDeUsuario.getDesarrolladorId());
@@ -24,6 +25,7 @@ public class MapperHistoriaDeUsuario {
     public Function<HistoriaDeUsuario, HistoriaDeUsuarioDTO> mapperAHistoriaDeUsuarioDTO(){
         return entity -> new HistoriaDeUsuarioDTO(
                 entity.getHistoriaUsuarioId(),
+                entity.getTituloHistoriaUsuario(),
                 entity.getDescripcion(),
                 entity.getLiderTecnicoId(),
                 entity.getDesarrolladorId(),

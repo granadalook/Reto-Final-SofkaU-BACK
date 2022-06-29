@@ -13,23 +13,21 @@ import java.util.function.Function;
 
 @Service
 @Validated
-public class ActualizarHistoriaDeUsuarioCasoDeUso implements Function<String, Mono<HistoriaDeUsuarioDTO>> {
+public class ActualizarHistoriaDeUsuarioCasoDeUso implements CrearHistoriaDeUsuarioInterface {
 
     private final HistoriaDeUsuarioRepositorio repositorio;
 
     private final MapperHistoriaDeUsuario mapperHistoriaDeUsuario;
 
-    public ActualizarEstadoHistoriaDeUsuarioCasoDeUso(HistoriaDeUsuarioRepositorio repositorio, MapperHistoriaDeUsuario mapperHistoriaDeUsuario){
+    public ActualizarHistoriaDeUsuarioCasoDeUso(HistoriaDeUsuarioRepositorio repositorio, MapperHistoriaDeUsuario mapperHistoriaDeUsuario){
         this.repositorio=repositorio;
         this.mapperHistoriaDeUsuario=mapperHistoriaDeUsuario;
     }
 
-
     @Override
-    public Mono<HistoriaDeUsuarioDTO> apply(HistoriaDeUsuarioDTO historiaDeUsuarioDTO) {
+    public Mono<String> crearHistoriaDeUsuario(HistoriaDeUsuarioDTO historiaDeUsuarioDTO) {
         Objects.requireNonNull(historiaDeUsuarioDTO.getHistoriaUsuarioId(), "Id de la Historia De Usuario es requerido.");
         return repositorio.save(mapperHistoriaDeUsuario.mapperAHistoriaDeUsuario(historiaDeUsuarioDTO.getHistoriaUsuarioId()).apply(historiaDeUsuarioDTO))
                 .map(HistoriaDeUsuario::getHistoriaUsuarioId);
-        
     }
 }

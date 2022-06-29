@@ -1,6 +1,7 @@
 package co.com.sofkau.appagilismo.proyecto.casos_de_uso;
 
-import co.com.sofkau.appagilismo.proyecto.mapper.MapperProyecto;
+import co.com.sofkau.appagilismo.usuario.dto.UsuarioDTO;
+import co.com.sofkau.appagilismo.usuario.mapper.MapperUsuario;
 import co.com.sofkau.appagilismo.usuario.repositorio.UsuarioRepositorio;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -14,18 +15,36 @@ import java.util.List;
 public class AsignarProyectoAUsuarioCasoDeUso implements AsignarProyectoAUsuarioInterface {
 
     private final UsuarioRepositorio repositorio;
-    private final MapperProyecto mapperProyecto;
+    private final MapperUsuario mapperUsuario;
 
-    public AsignarProyectoAUsuarioCasoDeUso(UsuarioRepositorio repositorio, MapperProyecto mapperProyecto) {
+    public AsignarProyectoAUsuarioCasoDeUso(UsuarioRepositorio repositorio, MapperUsuario mapperUsuario) {
         this.repositorio = repositorio;
-        this.mapperProyecto = mapperProyecto;
+        this.mapperUsuario = mapperUsuario;
     }
 
     @Override
-    public Mono<Void> asignarProyecto(String usuarioId, String proyectoId) {
-        List<String> listaId = new ArrayList<>();
-        listaId.add(proyectoId);
-        return repositorio.findById(usuarioId)
-                .map(usuario -> usuario.setIdProyectosAsociados(listaId));
+    public Mono<UsuarioDTO> asignarProyecto(UsuarioDTO usuarioDTO) {
+        return repositorio.findById(usuarioDTO.getUsuarioId())
+                .flatMap(usuario -> {
+                    String idProyecto = usuarioDTO.getIdProyectosAsociados().get(0);
+                    List<String> lista = new ArrayList<>();
+                    lista = usuario.getIdProyectosAsociados();
+                    lista.add(idProyecto);
+                    usuario.setIdProyectosAsociados(lista);
+                    return repositorio.save(usuario);
+                })
+                .map(mapperUsuario.mapperAUsuarioDTO());
     }
 }
+
+    /*public Mono<Void> asignarProyecto(UsuarioDTO usuarioDTO) {
+        return repositorio.findById(usuarioDTO.getUsuarioId())
+                .flatMap(usuario -> {
+                    List<String> lista = new ArrayList<>();
+                    lista = usuario.getIdProyectosAsociados();
+                    lista.add(proyectoDTO.getProyectoId());
+                    usuario.setIdProyectosAsociados(lista);
+                    return repositorio.save(usuario);
+                })
+                .then();
+    }*/

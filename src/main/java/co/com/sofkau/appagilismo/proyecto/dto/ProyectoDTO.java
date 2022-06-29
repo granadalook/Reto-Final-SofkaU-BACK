@@ -20,24 +20,22 @@ public class ProyectoDTO {
     @NotBlank
     private String liderTecnicoId;
 
-    private List<String> usuarios;
-
     private List<String> historias_de_usuarios;
 
-    public ProyectoDTO(String proyectoId, String nombre, Map<String, List<String>> usuariosId) {
+    public ProyectoDTO() {
     }
 
-    public ProyectoDTO(String proyectoId, String nombre) {
+    public ProyectoDTO(String proyectoId, String nombre, String arquitectoId, String liderTecnicoId) {
         this.proyectoId = proyectoId;
         this.nombre = nombre;
-        /*this.arquitectoId = arquitectoId;
-        this.liderTecnicoId = liderTecnicoId;*/
+        this.arquitectoId = arquitectoId;
+        this.liderTecnicoId = liderTecnicoId;
     }
 
-    public ProyectoDTO(String nombre) {
+    public ProyectoDTO(String nombre, String arquitectoId, String liderTecnicoId) {
         this.nombre = nombre;
-        /*this.arquitectoId = arquitectoId;
-        this.liderTecnicoId = liderTecnicoId;*/
+        this.arquitectoId = arquitectoId;
+        this.liderTecnicoId = liderTecnicoId;
     }
 
     public ProyectoDTO(String proyectoId, String nombre, String arquitectoId, String liderTecnicoId, List<String> desarrolladorId) {
@@ -82,14 +80,5 @@ public class ProyectoDTO {
 
     public void setLiderTecnicoId(String liderTecnicoId) {
         this.liderTecnicoId = liderTecnicoId;
-    }
-
-    public List<String> getUsuarios() {
-        this.usuarios = Optional.ofNullable(usuarios).orElse(new ArrayList<>());
-        return usuarios;
-    }
-
-    public void setUsuarios(List<String> usuarios) {
-        this.usuarios = usuarios;
     }
 }

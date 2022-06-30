@@ -2,6 +2,10 @@ package co.com.sofkau.appagilismo.historiadeusuario.mapper;
 
 import co.com.sofkau.appagilismo.historiadeusuario.coleccion.HistoriaDeUsuario;
 import co.com.sofkau.appagilismo.historiadeusuario.dto.HistoriaDeUsuarioDTO;
+import co.com.sofkau.appagilismo.historiadeusuario.repositorio.HistoriaDeUsuarioRepositorio;
+import co.com.sofkau.appagilismo.tarea.mapper.MapperTarea;
+import co.com.sofkau.appagilismo.tarea.repositorio.TareaRepositorio;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
@@ -9,6 +13,16 @@ import java.util.function.Function;
 
 @Component
 public class MapperHistoriaDeUsuario {
+
+
+    private final TareaRepositorio tareaRepositorio;
+
+    private final MapperTarea mapperTarea;
+
+    public MapperHistoriaDeUsuario(TareaRepositorio tareaRepositorio, MapperTarea mapperTarea){
+        this.tareaRepositorio=tareaRepositorio;
+        this.mapperTarea=mapperTarea;
+    }
 
     public Function<HistoriaDeUsuarioDTO, HistoriaDeUsuario> mapperAHistoriaDeUsuario(String id){
         return updateHistoriaDeUsuario -> {
@@ -48,6 +62,19 @@ public class MapperHistoriaDeUsuario {
                 entity.getDesarrolladorId(),
                 entity.getProyectoId()
         );
+    }
+
+    public Function<HistoriaDeUsuarioDTO, Mono<HistoriaDeUsuarioDTO>> mapperHistoriaDeUsuarioActualizada(){
+        return historiaDeUsuarioDTO ->
+                Mono.just(historiaDeUsuarioDTO).zipWith(
+                        tareaRepositorio.findAllByHistoriaUsuarioId(historiaDeUsuarioDTO.getHistoriaUsuarioId())
+                                .map(mapperTarea.mapperATareaDTO())
+                                .collectList(),
+                        (historiaDeUsuario, tareas) -> {
+                            historiaDeUsuario.setTareas(tareas);
+                            return historiaDeUsuario;
+                        }
+                );
     }
 
 

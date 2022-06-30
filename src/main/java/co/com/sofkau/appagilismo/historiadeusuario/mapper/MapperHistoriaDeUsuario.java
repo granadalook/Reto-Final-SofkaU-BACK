@@ -10,14 +10,17 @@ import java.util.function.Function;
 @Component
 public class MapperHistoriaDeUsuario {
 
-    public Function<HistoriaDeUsuarioDTO, HistoriaDeUsuario> mapperAHistoriaDeUsuario(){
+    public Function<HistoriaDeUsuarioDTO, HistoriaDeUsuario> mapperAHistoriaDeUsuario(String id){
         return updateHistoriaDeUsuario -> {
             var historiaDeUsuario = new HistoriaDeUsuario();
+            historiaDeUsuario.setHistoriaUsuarioId(id);
             historiaDeUsuario.setTituloHistoriaUsuario(updateHistoriaDeUsuario.getTituloHistoriaUsuario());
             historiaDeUsuario.setDescripcion(updateHistoriaDeUsuario.getDescripcion());
             historiaDeUsuario.setEstimacion(updateHistoriaDeUsuario.getEstimacion());
+            historiaDeUsuario.setEstado(updateHistoriaDeUsuario.isEstado());
+            historiaDeUsuario.setPorcentajeDeAvance(updateHistoriaDeUsuario.getPorcentajeDeAvance());
             historiaDeUsuario.setLiderTecnicoId(updateHistoriaDeUsuario.getLiderTecnicoId());
-            historiaDeUsuario.setDesarrolladorId(updateHistoriaDeUsuario.getDesarrolladorId());
+            historiaDeUsuario.setCreadoPor(updateHistoriaDeUsuario.getCreadoPor());
             historiaDeUsuario.setProyectoId(updateHistoriaDeUsuario.getProyectoId());
             return historiaDeUsuario;
         };
@@ -29,10 +32,13 @@ public class MapperHistoriaDeUsuario {
                 entity.getTituloHistoriaUsuario(),
                 entity.getDescripcion(),
                 entity.getEstimacion(),
+                entity.isEstado(),
+                entity.getPorcentajeDeAvance(),
                 entity.getLiderTecnicoId(),
-                entity.getDesarrolladorId(),
+                entity.getCreadoPor(),
                 entity.getProyectoId()
         );
     }
+
 
 }

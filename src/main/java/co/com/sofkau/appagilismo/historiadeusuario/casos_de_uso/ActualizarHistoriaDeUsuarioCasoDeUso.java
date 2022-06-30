@@ -8,24 +8,26 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Mono;
 
+import java.util.Objects;
+import java.util.function.Function;
+
 @Service
 @Validated
-public class CrearHistoriaDeUsuarioCasoDeUso implements CrearHistoriaDeUsuarioInterface{
+public class ActualizarHistoriaDeUsuarioCasoDeUso implements CrearHistoriaDeUsuarioInterface {
 
     private final HistoriaDeUsuarioRepositorio repositorio;
 
     private final MapperHistoriaDeUsuario mapperHistoriaDeUsuario;
 
-    public CrearHistoriaDeUsuarioCasoDeUso(HistoriaDeUsuarioRepositorio repositorio, MapperHistoriaDeUsuario mapperHistoriaDeUsuario){
+    public ActualizarHistoriaDeUsuarioCasoDeUso(HistoriaDeUsuarioRepositorio repositorio, MapperHistoriaDeUsuario mapperHistoriaDeUsuario){
         this.repositorio=repositorio;
         this.mapperHistoriaDeUsuario=mapperHistoriaDeUsuario;
     }
 
     @Override
-    public Mono<HistoriaDeUsuarioDTO> crearHistoriaDeUsuario(HistoriaDeUsuarioDTO historiaDeUsuarioDTO){
-       return repositorio
-                .save(mapperHistoriaDeUsuario.mapperAHistoriaDeUsuario(null).apply(historiaDeUsuarioDTO))
-               .map(mapperHistoriaDeUsuario.mapperAHistoriaDeUsuarioDTO());
+    public Mono<HistoriaDeUsuarioDTO> crearHistoriaDeUsuario(HistoriaDeUsuarioDTO historiaDeUsuarioDTO) {
+        //Objects.requireNonNull(historiaDeUsuarioDTO.getHistoriaUsuarioId(), "Id de la Historia De Usuario es requerido.");
+        return repositorio.save(mapperHistoriaDeUsuario.mapperAHistoriaDeUsuario(historiaDeUsuarioDTO.getHistoriaUsuarioId()).apply(historiaDeUsuarioDTO))
+                .map(mapperHistoriaDeUsuario.mapperAHistoriaDeUsuarioDTO());
     }
-
 }

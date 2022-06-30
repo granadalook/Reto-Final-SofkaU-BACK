@@ -20,7 +20,7 @@ public class MapperHistoriaDeUsuario {
             historiaDeUsuario.setEstado(updateHistoriaDeUsuario.isEstado());
             historiaDeUsuario.setPorcentajeDeAvance(updateHistoriaDeUsuario.getPorcentajeDeAvance());
             historiaDeUsuario.setLiderTecnicoId(updateHistoriaDeUsuario.getLiderTecnicoId());
-            historiaDeUsuario.setCreadoPor(updateHistoriaDeUsuario.getCreadoPor());
+            historiaDeUsuario.setDesarrolladorId(updateHistoriaDeUsuario.getDesarrolladorId());
             historiaDeUsuario.setProyectoId(updateHistoriaDeUsuario.getProyectoId());
             return historiaDeUsuario;
         };
@@ -35,7 +35,7 @@ public class MapperHistoriaDeUsuario {
                 entity.isEstado(),
                 entity.getPorcentajeDeAvance(),
                 entity.getLiderTecnicoId(),
-                entity.getCreadoPor(),
+                entity.getDesarrolladorId(),
                 entity.getProyectoId()
         );
     }

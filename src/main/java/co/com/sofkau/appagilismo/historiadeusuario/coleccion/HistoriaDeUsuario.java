@@ -28,7 +28,7 @@ public class HistoriaDeUsuario {
     private String liderTecnicoId;
 
     @NotBlank
-    private String creadoPor;
+    private String desarrolladorId;
 
     @NotBlank
     private String proyectoId;
@@ -97,12 +97,12 @@ public class HistoriaDeUsuario {
         this.liderTecnicoId = liderTecnicoId;
     }
 
-    public String getCreadoPor() {
-        return creadoPor;
+    public String getDesarrolladorId() {
+        return desarrolladorId;
     }
 
-    public void setCreadoPor(String desarrolladorId) {
-        this.creadoPor = desarrolladorId;
+    public void setDesarrolladorId(String desarrolladorId) {
+        this.desarrolladorId = desarrolladorId;
     }
 
     public String getProyectoId() {

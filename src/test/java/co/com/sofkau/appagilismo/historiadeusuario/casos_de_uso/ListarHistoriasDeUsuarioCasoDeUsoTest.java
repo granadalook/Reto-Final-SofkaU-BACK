@@ -26,11 +26,11 @@ class ListarHistoriasDeUsuarioCasoDeUsoTest {
     @Autowired
     private MapperHistoriaDeUsuario mapperHistoriaDeUsuario;
 
-    @BeforeEach
+   /* @BeforeEach
     public void configuracionInicial(){
         repositorio = mock(HistoriaDeUsuarioRepositorio.class);
         casoDeUso = new ListarHistoriasDeUsuarioCasoDeUso(mapperHistoriaDeUsuario, repositorio);
-    }
+    }*/
 
     @Test
     void listarTodasLasHistoriasDeUsuarioTest() {

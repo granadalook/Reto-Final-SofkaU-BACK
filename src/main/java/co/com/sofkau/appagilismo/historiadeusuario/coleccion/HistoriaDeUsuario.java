@@ -1,9 +1,11 @@
 package co.com.sofkau.appagilismo.historiadeusuario.coleccion;
 
+import co.com.sofkau.appagilismo.tarea.dto.TareaDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Document(collection = "historiadeusuario")
 public class HistoriaDeUsuario {
@@ -32,6 +34,8 @@ public class HistoriaDeUsuario {
 
     @NotBlank
     private String proyectoId;
+
+
 
     public HistoriaDeUsuario() {
     }
@@ -112,4 +116,5 @@ public class HistoriaDeUsuario {
     public void setProyectoId(String proyectoId) {
         this.proyectoId = proyectoId;
     }
+
 }

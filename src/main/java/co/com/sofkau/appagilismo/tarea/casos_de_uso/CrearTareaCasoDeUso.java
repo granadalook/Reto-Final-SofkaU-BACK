@@ -30,9 +30,9 @@ public class CrearTareaCasoDeUso implements CrearTareaInterface {
 
     @Override
     public Mono<HistoriaDeUsuarioDTO> crearTarea(TareaDTO tareaDTO) {
-        Objects.requireNonNull(tareaDTO.getHistoriaUsuarioId(),"Id de tarea es obligatorio.");
+        //Objects.requireNonNull(tareaDTO.getHistoriaUsuarioId(),"Id de tarea es obligatorio.");
         return asociarHistoriaDeUsuarioCasoDeUso.apply(tareaDTO.getHistoriaUsuarioId()).flatMap(historiaDeUsuario ->
-                tareaRepositorio.save(mapperTarea.mapperATarea().apply(tareaDTO))
+                tareaRepositorio.save(mapperTarea.mapperATarea(null).apply(tareaDTO))
                         .map(tarea -> {
                             historiaDeUsuario.getTareas().add(tareaDTO);
                             return historiaDeUsuario;

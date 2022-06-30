@@ -13,4 +13,5 @@ public interface TareaRepositorio extends ReactiveMongoRepository<Tarea, String>
 
     Flux<Tarea> findAllByHistoriaUsuarioId(String historiaUsuarioId);
 
+
 }

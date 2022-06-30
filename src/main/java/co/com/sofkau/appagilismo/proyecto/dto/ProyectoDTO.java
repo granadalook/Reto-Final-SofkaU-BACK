@@ -9,6 +9,8 @@ import java.util.Optional;
 
 public class ProyectoDTO {
 
+
+
     private String proyectoId;
 
     @NotBlank
@@ -20,25 +22,28 @@ public class ProyectoDTO {
     @NotBlank
     private String liderTecnicoId;
 
+    private Integer porcentajeDeAvance;
+
+    private Boolean estado;
+
     private List<String> historias_de_usuarios;
 
     public ProyectoDTO() {
     }
 
-    public ProyectoDTO(String proyectoId, String nombre, String arquitectoId, String liderTecnicoId) {
+    public ProyectoDTO(String proyectoId, String nombre, String arquitectoId, String liderTecnicoId, Integer porcentajeDeAvance, Boolean estado) {
         this.proyectoId = proyectoId;
         this.nombre = nombre;
         this.arquitectoId = arquitectoId;
         this.liderTecnicoId = liderTecnicoId;
+        this.porcentajeDeAvance = porcentajeDeAvance;
+        this.estado = estado;
     }
 
     public ProyectoDTO(String nombre, String arquitectoId, String liderTecnicoId) {
         this.nombre = nombre;
         this.arquitectoId = arquitectoId;
         this.liderTecnicoId = liderTecnicoId;
-    }
-
-    public ProyectoDTO(String proyectoId, String nombre, String arquitectoId, String liderTecnicoId, List<String> desarrolladorId) {
     }
 
     public String getProyectoId() {
@@ -80,5 +85,21 @@ public class ProyectoDTO {
 
     public void setLiderTecnicoId(String liderTecnicoId) {
         this.liderTecnicoId = liderTecnicoId;
+    }
+
+    public Integer getPorcentajeDeAvance() {
+        return porcentajeDeAvance;
+    }
+
+    public void setPorcentajeDeAvance(Integer porcentajeDeAvance) {
+        this.porcentajeDeAvance = porcentajeDeAvance;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
     }
 }

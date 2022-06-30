@@ -9,12 +9,15 @@ import java.util.function.Function;
 @Component
 public class MapperProyecto {
 
-    public Function<ProyectoDTO, Proyecto> mapperAProyecto() {
+    public Function<ProyectoDTO, Proyecto> mapperAProyecto(String id) {
         return proyectoActualizado -> {
             var proyecto = new Proyecto();
+            proyecto.setProyectoId(id);
             proyecto.setNombre(proyectoActualizado.getNombre());
             proyecto.setArquitectoId(proyectoActualizado.getArquitectoId());
             proyecto.setLiderTecnicoId(proyectoActualizado.getLiderTecnicoId());
+            proyecto.setPorcentajeDeAvance(proyectoActualizado.getPorcentajeDeAvance());
+            proyecto.setEstado(proyectoActualizado.getEstado());
             return proyecto;
         };
     }
@@ -24,7 +27,9 @@ public class MapperProyecto {
                 proyectoDto.getProyectoId(),
                 proyectoDto.getNombre(),
                 proyectoDto.getArquitectoId(),
-                proyectoDto.getLiderTecnicoId()
+                proyectoDto.getLiderTecnicoId(),
+                proyectoDto.getPorcentajeDeAvance(),
+                proyectoDto.getEstado()
         );
     }
 

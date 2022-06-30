@@ -19,7 +19,7 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 class CrearHistoriaDeUsuarioCasoDeUsoTest {
 
-    @Autowired
+   /* @Autowired
     private HistoriaDeUsuarioRepositorio repositorio;
 
     @Autowired
@@ -44,7 +44,7 @@ class CrearHistoriaDeUsuarioCasoDeUsoTest {
 
     @Test
     void crearHistoriaDeUsuarioTest(){
-       /* var historiaDeUsuario = new HistoriaDeUsuario();
+       *//* var historiaDeUsuario = new HistoriaDeUsuario();
         historiaDeUsuario.setUsuarioId(USUARIOID);
         historiaDeUsuario.setHistoriaUsuarioId(ID);
         historiaDeUsuario.setDescripcion(DESCRIPCION);
@@ -68,6 +68,6 @@ class CrearHistoriaDeUsuarioCasoDeUsoTest {
                 })
                 .verifyComplete();
 
-        verify(repositorio).save(Mockito.any(HistoriaDeUsuario.class));*/
-    }
+        verify(repositorio).save(Mockito.any(HistoriaDeUsuario.class));*//*
+    }*/
 }

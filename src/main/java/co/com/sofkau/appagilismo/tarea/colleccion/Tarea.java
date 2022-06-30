@@ -20,6 +20,8 @@ public class Tarea {
     @NotBlank
     private boolean estadoTarea;
 
+    private boolean completa;
+
     @NotBlank
     private String descripcionTarea;
 
@@ -78,6 +80,14 @@ public class Tarea {
 
     public void setEstadoTarea(boolean estadoTarea) {
         this.estadoTarea = estadoTarea;
+    }
+
+    public boolean isCompleta() {
+        return completa;
+    }
+
+    public void setCompleta(boolean completa) {
+        this.completa = completa;
     }
 
     public String getDescripcionTarea() {

@@ -33,7 +33,7 @@ public class AsociarHistoriaDeUsuarioCasoDeUso implements Function<String, Mono<
 
     @Override
     public Mono<HistoriaDeUsuarioDTO> apply(String id) {
-        Objects.requireNonNull(id, "Id es obligatorio.");
+        //Objects.requireNonNull(id, "Id es obligatorio.");
         return repositorio.findById(id)
                 .map(mapperHistoriaDeUsuario.mapperAHistoriaDeUsuarioDTO())
                 .flatMap(mapperHistoriaDeUsuarioAgregado());

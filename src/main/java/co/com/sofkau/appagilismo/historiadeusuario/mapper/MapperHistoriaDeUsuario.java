@@ -18,12 +18,22 @@ public class MapperHistoriaDeUsuario {
             historiaDeUsuario.setDescripcion(updateHistoriaDeUsuario.getDescripcion());
             historiaDeUsuario.setEstimacion(updateHistoriaDeUsuario.getEstimacion());
             historiaDeUsuario.setEstado(updateHistoriaDeUsuario.isEstado());
-            historiaDeUsuario.setPorcentajeDeAvance(updateHistoriaDeUsuario.getPorcentajeDeAvance());
+            historiaDeUsuario.setPorcentajeDeAvance(calcularPorcentajeDeAvance(updateHistoriaDeUsuario));
             historiaDeUsuario.setLiderTecnicoId(updateHistoriaDeUsuario.getLiderTecnicoId());
             historiaDeUsuario.setDesarrolladorId(updateHistoriaDeUsuario.getDesarrolladorId());
             historiaDeUsuario.setProyectoId(updateHistoriaDeUsuario.getProyectoId());
             return historiaDeUsuario;
         };
+    }
+
+    private Integer calcularPorcentajeDeAvance(HistoriaDeUsuarioDTO historiaDeUsuarioDTO){
+       Double completas = Double.valueOf(historiaDeUsuarioDTO.getTareas().stream().filter(tarea -> {
+            return tarea.isCompleta()==true;
+        }).count());
+
+        Double total = Double.valueOf(historiaDeUsuarioDTO.getTareas().size());
+
+        return Math.toIntExact((long) ((completas/total)*100));
     }
 
     public Function<HistoriaDeUsuario, HistoriaDeUsuarioDTO> mapperAHistoriaDeUsuarioDTO(){

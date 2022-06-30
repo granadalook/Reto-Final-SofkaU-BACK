@@ -24,7 +24,7 @@ public class EliminarProyectoCasoDeUso implements EliminarCasoDeUsoInterface {
     }
 
     @Override
-    public Mono<Void> eliminarProyecto(String idProyecto) {
+    public Mono<Void> deleteProyectoById(String idProyecto) {
         Objects.requireNonNull(idProyecto, "Id es requerido");
         return repositorio.deleteById(idProyecto)
                 .switchIfEmpty(Mono.defer(() -> historiaDeUsuarioRepositorio.deleteByProyectoId(idProyecto)));

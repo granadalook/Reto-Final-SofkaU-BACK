@@ -17,6 +17,7 @@ public class MapperUsuario {
             usuario.setEmail(updateUsuario.getEmail());
             usuario.setPassword(updateUsuario.getPassword());
             usuario.setRol(updateUsuario.getRol());
+            usuario.setIdProyectosAsociados(updateUsuario.getIdProyectosAsociados());
             return usuario;
         };
     }
@@ -27,8 +28,8 @@ public class MapperUsuario {
                 entity.getNombreCompleto(),
                 entity.getEmail(),
                 entity.getPassword(),
-                entity.getRol()
+                entity.getRol(),
+                entity.getIdProyectosAsociados()
         );
     }
-
 }

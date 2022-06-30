@@ -10,9 +10,10 @@ import java.util.function.Function;
 @Component
 public class MapperTarea {
 
-    public Function<TareaDTO, Tarea> mapperATarea(){
+    public Function<TareaDTO, Tarea> mapperATarea(String tareaId){
         return tareaActualizada -> {
             var tarea = new Tarea();
+            tarea.setTareaId(tareaId);
             tarea.setDesarrolladorId(tareaActualizada.getDesarrolladorId());
             tarea.setNombreTarea(tareaActualizada.getNombreTarea());
             tarea.setEstadoTarea(false);
@@ -24,6 +25,7 @@ public class MapperTarea {
 
     public  Function<Tarea,TareaDTO> mapperATareaDTO(){
         return tarea -> new TareaDTO(
+                tarea.getTareaId(),
                 tarea.getDesarrolladorId(),
                 tarea.getNombreTarea(),
                 tarea.isEstadoTarea(),

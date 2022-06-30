@@ -4,7 +4,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
-import java.util.List;
 
 @Document(collection = "proyecto")
 public class Proyecto {
@@ -21,28 +20,26 @@ public class Proyecto {
     @NotBlank
     private String liderTecnicoId;
 
-    private List<String> desarrolladorId;
+    private Integer porcentajeDeAvance;
+
+    private Boolean estado;
 
     public Proyecto() {}
 
-    public Proyecto(String proyectoId, String nombre, String arquitectoId, String liderTecnicoId, List<String> desarrolladorId) {
+    public Proyecto(String proyectoId, String nombre, String arquitectoId, Integer porcentajeDeAvance, Boolean estado, String liderTecnicoId) {
         this.proyectoId = proyectoId;
         this.nombre = nombre;
         this.arquitectoId = arquitectoId;
+        this.porcentajeDeAvance = porcentajeDeAvance;
+        this.estado = estado;
         this.liderTecnicoId = liderTecnicoId;
-        this.desarrolladorId = desarrolladorId;
     }
 
-    public Proyecto(String nombre, String arquitectoId, String liderTecnicoId, List<String> desarrolladorId) {
+    public Proyecto(String nombre, String arquitectoId, String liderTecnicoId, Integer porcentajeDeAvance, Boolean estado) {
         this.nombre = nombre;
         this.arquitectoId = arquitectoId;
-        this.liderTecnicoId = liderTecnicoId;
-        this.desarrolladorId = desarrolladorId;
-    }
-
-    public Proyecto(String nombre, String arquitectoId, String liderTecnicoId) {
-        this.nombre = nombre;
-        this.arquitectoId = arquitectoId;
+        this.porcentajeDeAvance = porcentajeDeAvance;
+        this.estado = estado;
         this.liderTecnicoId = liderTecnicoId;
     }
 
@@ -78,11 +75,27 @@ public class Proyecto {
         this.liderTecnicoId = liderTecnicoId;
     }
 
-    public List<String> getDesarrolladorId() {
-        return desarrolladorId;
+    public Integer getPorcentajeDeAvance() {
+        return porcentajeDeAvance;
     }
 
-    public void setDesarrolladorId(List<String> desarrolladorId) {
-        this.desarrolladorId.add(String.valueOf(desarrolladorId));
+    public void setPorcentajeDeAvance(Integer porcentajeDeAvance) {
+        if (porcentajeDeAvance == null){
+            this.porcentajeDeAvance = 0;
+        }else {
+            this.porcentajeDeAvance = porcentajeDeAvance;
+        }
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        if (estado == null){
+            this.estado = false;
+        }else {
+            this.estado = estado;
+        }
     }
 }

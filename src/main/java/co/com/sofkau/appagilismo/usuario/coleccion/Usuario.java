@@ -5,6 +5,10 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Document(collection = "usuarios")
 public class Usuario {
@@ -24,15 +28,18 @@ public class Usuario {
     @NotBlank
     private String rol;
 
+    private List<String> idProyectosAsociados;
+
 
     public Usuario() {
     }
 
-    public Usuario(String nombreCompleto, String email, String password, String rol) {
+    public Usuario(String nombreCompleto, String email, String password, String rol, List<String> idProyectosAsociados) {
         this.nombreCompleto = nombreCompleto;
         this.email = email;
         this.password = password;
         this.rol=rol;
+        this.idProyectosAsociados = Optional.ofNullable(idProyectosAsociados).orElse(new ArrayList<>());
     }
 
     public String getUsuarioId() {
@@ -73,5 +80,14 @@ public class Usuario {
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    public List<String> getIdProyectosAsociados() {
+        this.idProyectosAsociados = Optional.ofNullable(idProyectosAsociados).orElse(new ArrayList<>());
+        return idProyectosAsociados;
+    }
+
+    public void setIdProyectosAsociados(List<String> idProyectosAsociados) {
+        this.idProyectosAsociados = idProyectosAsociados;
     }
 }

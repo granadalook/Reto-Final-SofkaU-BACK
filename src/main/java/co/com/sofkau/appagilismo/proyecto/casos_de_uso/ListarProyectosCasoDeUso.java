@@ -5,25 +5,25 @@ import co.com.sofkau.appagilismo.proyecto.mapper.MapperProyecto;
 import co.com.sofkau.appagilismo.proyecto.repositorio.ProyectoRepositorio;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
+
+import java.util.function.Supplier;
 
 @Service
 @Validated
-public class CrearProyectoCasoDeUso implements CrearProyectoInterface{
+public class ListarProyectosCasoDeUso implements Supplier<Flux<ProyectoDTO>> {
 
     private final ProyectoRepositorio repositorio;
     private final MapperProyecto mapperProyecto;
 
-    public CrearProyectoCasoDeUso(ProyectoRepositorio repositorio, MapperProyecto mapperProyecto) {
+    public ListarProyectosCasoDeUso(ProyectoRepositorio repositorio, MapperProyecto mapperProyecto) {
         this.repositorio = repositorio;
         this.mapperProyecto = mapperProyecto;
     }
 
     @Override
-    public Mono<ProyectoDTO> guardarProyecto(ProyectoDTO proyectoDTO) {
-        return
-                repositorio
-                .save(mapperProyecto.mapperAProyecto(null).apply(proyectoDTO))
-                .map(proyecto -> mapperProyecto.mapperAProyectoDTO().apply(proyecto));
+    public Flux<ProyectoDTO> get() {
+        return repositorio.findAll()
+                .map(mapperProyecto.mapperAProyectoDTO());
     }
 }

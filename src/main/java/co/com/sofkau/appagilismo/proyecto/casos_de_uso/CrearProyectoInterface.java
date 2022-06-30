@@ -8,5 +8,5 @@ import javax.validation.Valid;
 @FunctionalInterface
 public interface CrearProyectoInterface {
 
-    Mono<ProyectoDTO> crearProyecto(@Valid ProyectoDTO proyectoDTO);
+    Mono<ProyectoDTO> guardarProyecto(@Valid ProyectoDTO proyectoDTO);
 }

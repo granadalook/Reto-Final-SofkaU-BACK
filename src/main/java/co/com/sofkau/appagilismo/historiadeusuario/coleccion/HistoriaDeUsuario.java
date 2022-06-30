@@ -19,33 +19,21 @@ public class HistoriaDeUsuario {
     private String estimacion;
 
     @NotBlank
+    private boolean estado;
+
+    @NotBlank
+    private Integer porcentajeDeAvance;
+
+    @NotBlank
     private String liderTecnicoId;
 
     @NotBlank
-    private String desarrolladorId;
+    private String creadoPor;
 
     @NotBlank
     private String proyectoId;
 
     public HistoriaDeUsuario() {
-    }
-
-    public HistoriaDeUsuario(String historiaUsuarioId,String tituloHistoriaUsuario, String descripcion, String estimacion, String liderTecnicoId, String desarrolladorId,String proyectoId) {
-        this.historiaUsuarioId = historiaUsuarioId;
-        this.tituloHistoriaUsuario=tituloHistoriaUsuario;
-        this.descripcion = descripcion;
-        this.estimacion=estimacion;
-        this.liderTecnicoId=liderTecnicoId;
-        this.desarrolladorId = desarrolladorId;
-        this.proyectoId=proyectoId;
-    }
-
-    public HistoriaDeUsuario(String tituloHistoriaUsuario,String estimacion,String liderTecnicoId, String desarrolladorId, String proyectoId) {
-        this.tituloHistoriaUsuario=tituloHistoriaUsuario;
-        this.estimacion = estimacion;
-        this.liderTecnicoId = liderTecnicoId;
-        this.desarrolladorId = desarrolladorId;
-        this.proyectoId=proyectoId;
     }
 
     public String getHistoriaUsuarioId() {
@@ -80,6 +68,27 @@ public class HistoriaDeUsuario {
         this.estimacion = estimacion;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public Integer getPorcentajeDeAvance() {
+        return porcentajeDeAvance;
+    }
+
+    public void setPorcentajeDeAvance(Integer porcentajeDeAvance) {
+        if(porcentajeDeAvance == null){
+            this.porcentajeDeAvance=0;
+        }
+        else{
+            this.porcentajeDeAvance = porcentajeDeAvance;
+        }
+    }
+
     public String getLiderTecnicoId() {
         return liderTecnicoId;
     }
@@ -88,12 +97,12 @@ public class HistoriaDeUsuario {
         this.liderTecnicoId = liderTecnicoId;
     }
 
-    public String getDesarrolladorId() {
-        return desarrolladorId;
+    public String getCreadoPor() {
+        return creadoPor;
     }
 
-    public void setDesarrolladorId(String desarrolladorId) {
-        this.desarrolladorId = desarrolladorId;
+    public void setCreadoPor(String desarrolladorId) {
+        this.creadoPor = desarrolladorId;
     }
 
     public String getProyectoId() {

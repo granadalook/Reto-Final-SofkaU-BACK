@@ -1,12 +1,16 @@
 package co.com.sofkau.appagilismo.historiadeusuario.casos_de_uso;
 
+import co.com.sofkau.appagilismo.excepciones.ExcepcionPersonalizadaInternalServerError;
+import co.com.sofkau.appagilismo.excepciones.ExcepcionPersonalizadaNotFound;
 import co.com.sofkau.appagilismo.historiadeusuario.dto.HistoriaDeUsuarioDTO;
 import co.com.sofkau.appagilismo.historiadeusuario.mapper.MapperHistoriaDeUsuario;
 import co.com.sofkau.appagilismo.historiadeusuario.repositorio.HistoriaDeUsuarioRepositorio;
 import co.com.sofkau.appagilismo.tarea.mapper.MapperTarea;
 import co.com.sofkau.appagilismo.tarea.repositorio.TareaRepositorio;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -21,35 +25,22 @@ public class ListarHistoriasPorProyectoIdCasoDeUso implements Function<String, F
     private final MapperHistoriaDeUsuario mapperHistoriaDeUsuario;
 
 
-    private final TareaRepositorio tareaRepositorio;
-
-    private final MapperTarea mapperTarea;
-
-
     public ListarHistoriasPorProyectoIdCasoDeUso(HistoriaDeUsuarioRepositorio historiaDeUsuarioRepositorio, MapperHistoriaDeUsuario mapperHistoriaDeUsuario, TareaRepositorio tareaRepositorio, MapperTarea mapperTarea){
         this.historiaDeUsuarioRepositorio=historiaDeUsuarioRepositorio;
         this.mapperHistoriaDeUsuario=mapperHistoriaDeUsuario;
-        this.tareaRepositorio=tareaRepositorio;
-        this.mapperTarea=mapperTarea;
     }
 
     @Override
     public Flux<HistoriaDeUsuarioDTO> apply(String proyectoId) {
         return historiaDeUsuarioRepositorio.findAllByProyectoId(proyectoId)
                 .map(mapperHistoriaDeUsuario.mapperAHistoriaDeUsuarioDTO())
-                .flatMap(mapperHistoriaDeUsuarioActualizada());
-    }
-
-    private Function<HistoriaDeUsuarioDTO, Mono<HistoriaDeUsuarioDTO>> mapperHistoriaDeUsuarioActualizada(){
-        return historiaDeUsuarioDTO ->
-                Mono.just(historiaDeUsuarioDTO).zipWith(
-                        tareaRepositorio.findAllByHistoriaUsuarioId(historiaDeUsuarioDTO.getHistoriaUsuarioId())
-                                .map(mapperTarea.mapperATareaDTO())
-                                .collectList(),
-                        (historiaDeUsuario, tareas) -> {
-                            historiaDeUsuario.setTareas(tareas);
-                            return historiaDeUsuario;
-                        }
-                );
+                .flatMap(mapperHistoriaDeUsuario.mapperHistoriaDeUsuarioActualizada())
+                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND)))
+                .onErrorResume(error -> {
+                    if (error.getMessage().equals("404 NOT_FOUND")) {
+                        return Mono.error(new ExcepcionPersonalizadaNotFound("Proyecto no se encuentra registrado"));
+                    }
+                    return Mono.error(new ExcepcionPersonalizadaInternalServerError("Campos vacios"));
+                });
     }
 }

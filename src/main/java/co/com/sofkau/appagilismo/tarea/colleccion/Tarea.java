@@ -18,7 +18,7 @@ public class Tarea {
     private String nombreTarea;
 
     @NotBlank
-    private boolean estadoTarea;
+    private String estado;
 
     private boolean completa;
 
@@ -29,26 +29,6 @@ public class Tarea {
     private String historiaUsuarioId;
 
 
-    /*public Tarea(){
-
-    };*/
-
-    /*public Tarea(String tareaId, String desarrolladorId, String nombreTarea, boolean estadoTarea, String descripcionTarea, String historiaUsuarioId) {
-        this.tareaId = tareaId;
-        this.desarrolladorId = desarrolladorId;
-        this.nombreTarea = nombreTarea;
-        this.estadoTarea = estadoTarea;
-        this.descripcionTarea = descripcionTarea;
-        this.historiaUsuarioId=historiaUsuarioId;
-    }
-
-    public Tarea(String desarrolladorId, String nombreTarea, boolean estadoTarea, String descripcionTarea, String historiaUsuarioId) {
-        this.desarrolladorId = desarrolladorId;
-        this.nombreTarea = nombreTarea;
-        this.estadoTarea = estadoTarea;
-        this.descripcionTarea = descripcionTarea;
-        this.historiaUsuarioId=historiaUsuarioId;
-    }*/
 
     public String getTareaId() {
         return tareaId;
@@ -74,12 +54,12 @@ public class Tarea {
         this.nombreTarea = nombreTarea;
     }
 
-    public boolean isEstadoTarea() {
-        return estadoTarea;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setEstadoTarea(boolean estadoTarea) {
-        this.estadoTarea = estadoTarea;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public boolean isCompleta() {

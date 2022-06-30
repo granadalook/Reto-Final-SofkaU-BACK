@@ -21,7 +21,7 @@ public class HistoriaDeUsuario {
     private String estimacion;
 
     @NotBlank
-    private boolean estado;
+    private String estado;
 
     @NotBlank
     private Integer porcentajeDeAvance;
@@ -72,11 +72,11 @@ public class HistoriaDeUsuario {
         this.estimacion = estimacion;
     }
 
-    public boolean isEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 

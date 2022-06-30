@@ -13,7 +13,7 @@ public class TareaDTO {
     @NotBlank
     private String nombreTarea;
 
-    private boolean estadoTarea;
+    private String estado;
 
     private boolean completa;
 
@@ -26,11 +26,11 @@ public class TareaDTO {
     public TareaDTO() {
     }
 
-    public TareaDTO(String tareaId,String desarrolladorId, String nombreTarea, boolean estadoTarea, boolean completa, String descripcionTarea, String historiaUsuarioId) {
+    public TareaDTO(String tareaId,String desarrolladorId, String nombreTarea, String estado, boolean completa, String descripcionTarea, String historiaUsuarioId) {
         this.tareaId = tareaId;
         this.desarrolladorId=desarrolladorId;
         this.nombreTarea = nombreTarea;
-        this.estadoTarea = estadoTarea;
+        this.estado = estado;
         this.completa=completa;
         this.descripcionTarea = descripcionTarea;
         this.historiaUsuarioId = historiaUsuarioId;
@@ -52,12 +52,12 @@ public class TareaDTO {
         this.nombreTarea = nombreTarea;
     }
 
-    public boolean isEstadoTarea() {
-        return estadoTarea;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setEstadoTarea(boolean estadoTarea) {
-        this.estadoTarea = estadoTarea;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public boolean isCompleta() {

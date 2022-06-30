@@ -16,7 +16,7 @@ public class MapperTarea {
             tarea.setTareaId(tareaId);
             tarea.setDesarrolladorId(tareaActualizada.getDesarrolladorId());
             tarea.setNombreTarea(tareaActualizada.getNombreTarea());
-            tarea.setEstadoTarea(tareaActualizada.isEstadoTarea());
+            tarea.setEstado(tareaActualizada.getEstado());
             tarea.setCompleta(tareaActualizada.isCompleta());
             tarea.setDescripcionTarea(tareaActualizada.getDescripcionTarea());
             tarea.setHistoriaUsuarioId(tareaActualizada.getHistoriaUsuarioId());
@@ -29,7 +29,7 @@ public class MapperTarea {
                 tarea.getTareaId(),
                 tarea.getDesarrolladorId(),
                 tarea.getNombreTarea(),
-                tarea.isEstadoTarea(),
+                tarea.getEstado(),
                 tarea.isCompleta(),
                 tarea.getDescripcionTarea(),
                 tarea.getHistoriaUsuarioId()

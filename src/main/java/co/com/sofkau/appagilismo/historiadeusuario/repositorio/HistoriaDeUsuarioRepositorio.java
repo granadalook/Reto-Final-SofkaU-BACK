@@ -12,4 +12,6 @@ public interface HistoriaDeUsuarioRepositorio  extends ReactiveMongoRepository<H
     Flux<HistoriaDeUsuario> findAllByLiderTecnicoId(String liderTecnicoId);
 
     Flux<HistoriaDeUsuario> findAllByDesarrolladorId(String desarrolladorId);
+
+    Flux<HistoriaDeUsuario> findAllByProyectoId(String proyectoId);
 }

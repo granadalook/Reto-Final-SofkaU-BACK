@@ -1,0 +1,55 @@
+package co.com.sofkau.appagilismo.historiadeusuario.casos_de_uso;
+
+import co.com.sofkau.appagilismo.historiadeusuario.dto.HistoriaDeUsuarioDTO;
+import co.com.sofkau.appagilismo.historiadeusuario.mapper.MapperHistoriaDeUsuario;
+import co.com.sofkau.appagilismo.historiadeusuario.repositorio.HistoriaDeUsuarioRepositorio;
+import co.com.sofkau.appagilismo.tarea.mapper.MapperTarea;
+import co.com.sofkau.appagilismo.tarea.repositorio.TareaRepositorio;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+import java.util.function.Function;
+
+@Service
+@Validated
+public class ListarHistoriasPorProyectoIdCasoDeUso implements Function<String, Flux<HistoriaDeUsuarioDTO>> {
+
+    private final HistoriaDeUsuarioRepositorio historiaDeUsuarioRepositorio;
+
+    private final MapperHistoriaDeUsuario mapperHistoriaDeUsuario;
+
+
+    private final TareaRepositorio tareaRepositorio;
+
+    private final MapperTarea mapperTarea;
+
+
+    public ListarHistoriasPorProyectoIdCasoDeUso(HistoriaDeUsuarioRepositorio historiaDeUsuarioRepositorio, MapperHistoriaDeUsuario mapperHistoriaDeUsuario, TareaRepositorio tareaRepositorio, MapperTarea mapperTarea){
+        this.historiaDeUsuarioRepositorio=historiaDeUsuarioRepositorio;
+        this.mapperHistoriaDeUsuario=mapperHistoriaDeUsuario;
+        this.tareaRepositorio=tareaRepositorio;
+        this.mapperTarea=mapperTarea;
+    }
+
+    @Override
+    public Flux<HistoriaDeUsuarioDTO> apply(String proyectoId) {
+        return historiaDeUsuarioRepositorio.findAllByProyectoId(proyectoId)
+                .map(mapperHistoriaDeUsuario.mapperAHistoriaDeUsuarioDTO())
+                .flatMap(mapperHistoriaDeUsuarioActualizada());
+    }
+
+    private Function<HistoriaDeUsuarioDTO, Mono<HistoriaDeUsuarioDTO>> mapperHistoriaDeUsuarioActualizada(){
+        return historiaDeUsuarioDTO ->
+                Mono.just(historiaDeUsuarioDTO).zipWith(
+                        tareaRepositorio.findAllByHistoriaUsuarioId(historiaDeUsuarioDTO.getHistoriaUsuarioId())
+                                .map(mapperTarea.mapperATareaDTO())
+                                .collectList(),
+                        (historiaDeUsuario, tareas) -> {
+                            historiaDeUsuario.setTareas(tareas);
+                            return historiaDeUsuario;
+                        }
+                );
+    }
+}

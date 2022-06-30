@@ -17,6 +17,7 @@ public class ListarHistoriasPorLiderTecnicoIdCasoDeUso implements Function<Strin
 
     private final MapperHistoriaDeUsuario mapperHistoriaDeUsuario;
 
+
     public ListarHistoriasPorLiderTecnicoIdCasoDeUso(HistoriaDeUsuarioRepositorio repositorio, MapperHistoriaDeUsuario mapperHistoriaDeUsuario){
         this.repositorio=repositorio;
         this.mapperHistoriaDeUsuario=mapperHistoriaDeUsuario;

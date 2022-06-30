@@ -18,11 +18,11 @@ public class ObtenerTareasPorHistoriaUsuarioIdRuta {
 
     @Bean
     public RouterFunction<ServerResponse> obtenerTareasPorHistoriaUsuarioId(AsociarHistoriaDeUsuarioCasoDeUso asociarHistoriaDeUsuarioCasoDeUso){
-        return route(GET("/historia/obtenerTareas/{id}").and(accept(APPLICATION_JSON)),
+        return route(GET("/historia/obtenerTareas/{historiaUsuarioId}").and(accept(APPLICATION_JSON)),
                 request -> ServerResponse.ok()
                         .contentType(APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(asociarHistoriaDeUsuarioCasoDeUso.apply(
-                                request.pathVariable("id")),
+                                request.pathVariable("historiaUsuarioId")),
                                 HistoriaDeUsuarioDTO.class
                                 ))
                 );

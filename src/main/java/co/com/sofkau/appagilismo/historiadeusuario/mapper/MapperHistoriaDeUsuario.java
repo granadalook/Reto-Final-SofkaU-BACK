@@ -44,7 +44,7 @@ public class MapperHistoriaDeUsuario {
             return tarea.isCompleta()==true;
         }).count());
 
-        Double total = Double.valueOf(historiaDeUsuarioDTO.getTareas().size());
+        Double total = (Double.valueOf(historiaDeUsuarioDTO.getTareas().size())-1);
 
         return Math.toIntExact((long) ((completas/total)*100));
     }

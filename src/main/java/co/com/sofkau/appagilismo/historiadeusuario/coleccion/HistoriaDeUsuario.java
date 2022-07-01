@@ -18,8 +18,6 @@ public class HistoriaDeUsuario {
     @NotBlank
     private String estimacion;
 
-    @NotBlank
-    private String estado;
 
     @NotBlank
     private boolean completa;
@@ -38,9 +36,6 @@ public class HistoriaDeUsuario {
 
 
 
-    public HistoriaDeUsuario() {
-    }
-
     public String getHistoriaUsuarioId() {
         return historiaUsuarioId;
     }
@@ -55,14 +50,6 @@ public class HistoriaDeUsuario {
 
     public void setTituloHistoriaUsuario(String tituloHistoriaUsuario) {
         this.tituloHistoriaUsuario = tituloHistoriaUsuario;
-    }
-
-    public boolean isCompleta() {
-        return completa;
-    }
-
-    public void setCompleta(boolean completa) {
-        this.completa = completa;
     }
 
     public String getDescripcion() {
@@ -81,15 +68,8 @@ public class HistoriaDeUsuario {
         this.estimacion = estimacion;
     }
 
-    public String getEstado() {
-        return estado;
-    }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public Integer getPorcentajeDeAvance() {
+   public Integer getPorcentajeDeAvance() {
         return porcentajeDeAvance;
     }
 

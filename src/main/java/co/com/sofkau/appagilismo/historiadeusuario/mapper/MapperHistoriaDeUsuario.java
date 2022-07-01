@@ -32,6 +32,7 @@ public class MapperHistoriaDeUsuario {
             historiaDeUsuario.setDescripcion(updateHistoriaDeUsuario.getDescripcion());
             historiaDeUsuario.setEstimacion(updateHistoriaDeUsuario.getEstimacion());
             historiaDeUsuario.setEstado(updateHistoriaDeUsuario.getEstado());
+            historiaDeUsuario.setCompleta(updateHistoriaDeUsuario.isCompleta());
             historiaDeUsuario.setPorcentajeDeAvance(calcularPorcentajeDeAvance(updateHistoriaDeUsuario));
             historiaDeUsuario.setLiderTecnicoId(updateHistoriaDeUsuario.getLiderTecnicoId());
             historiaDeUsuario.setDesarrolladorId(updateHistoriaDeUsuario.getDesarrolladorId());

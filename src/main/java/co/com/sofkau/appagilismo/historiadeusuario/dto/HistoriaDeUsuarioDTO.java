@@ -17,8 +17,10 @@ public class HistoriaDeUsuarioDTO {
     @NotBlank
     private String estimacion;
 
-
+    @NotBlank
     private String estado;
+
+    private boolean completa;
 
     private Integer porcentajeDeAvance;
 
@@ -36,12 +38,13 @@ public class HistoriaDeUsuarioDTO {
     public HistoriaDeUsuarioDTO() {
     }
 
-    public HistoriaDeUsuarioDTO(String historiaUsuarioId,String tituloHistoriaUsuario, String descripcion, String estimacion, String estado, Integer porcentajeDeAvance,  String liderTecnicoId, String desarrolladorId , String proyectoId) {
+    public HistoriaDeUsuarioDTO(String historiaUsuarioId,String tituloHistoriaUsuario, String descripcion, String estimacion, String estado, boolean completa, Integer porcentajeDeAvance,  String liderTecnicoId, String desarrolladorId , String proyectoId) {
         this.historiaUsuarioId = historiaUsuarioId;
         this.tituloHistoriaUsuario=tituloHistoriaUsuario;
         this.descripcion = descripcion;
         this.estimacion=estimacion;
         this.estado=estado;
+        this.completa=completa;
         this.porcentajeDeAvance=porcentajeDeAvance;
         this.liderTecnicoId=liderTecnicoId;
         this.desarrolladorId=desarrolladorId;
@@ -49,10 +52,11 @@ public class HistoriaDeUsuarioDTO {
 
     }
 
-    public HistoriaDeUsuarioDTO(String tituloHistoriaUsuario, String estimacion, String estado, String liderTecnicoId, String desarrolladorId, String proyectoId) {
+    public HistoriaDeUsuarioDTO(String tituloHistoriaUsuario, String estimacion, String estado,boolean completa, String liderTecnicoId, String desarrolladorId, String proyectoId) {
         this.tituloHistoriaUsuario=tituloHistoriaUsuario;
         this.estimacion = estimacion;
         this.estado=estado;
+        this.completa=completa;
         this.liderTecnicoId=liderTecnicoId;
         this.desarrolladorId=desarrolladorId;
         this.proyectoId=proyectoId;
@@ -77,6 +81,14 @@ public class HistoriaDeUsuarioDTO {
 
     public String getEstado() {
         return estado;
+    }
+
+    public boolean isCompleta() {
+        return completa;
+    }
+
+    public void setCompleta(boolean completa) {
+        this.completa = completa;
     }
 
     public Integer getPorcentajeDeAvance() {

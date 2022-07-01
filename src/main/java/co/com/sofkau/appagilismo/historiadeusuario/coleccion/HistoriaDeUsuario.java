@@ -22,6 +22,9 @@ public class HistoriaDeUsuario {
     private String estado;
 
     @NotBlank
+    private boolean completa;
+
+    @NotBlank
     private Integer porcentajeDeAvance;
 
     @NotBlank
@@ -52,6 +55,14 @@ public class HistoriaDeUsuario {
 
     public void setTituloHistoriaUsuario(String tituloHistoriaUsuario) {
         this.tituloHistoriaUsuario = tituloHistoriaUsuario;
+    }
+
+    public boolean isCompleta() {
+        return completa;
+    }
+
+    public void setCompleta(boolean completa) {
+        this.completa = completa;
     }
 
     public String getDescripcion() {

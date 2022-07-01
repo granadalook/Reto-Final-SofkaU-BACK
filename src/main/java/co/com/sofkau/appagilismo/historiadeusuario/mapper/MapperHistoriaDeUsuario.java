@@ -57,6 +57,7 @@ public class MapperHistoriaDeUsuario {
                 entity.getDescripcion(),
                 entity.getEstimacion(),
                 entity.getEstado(),
+                entity.isCompleta(),
                 entity.getPorcentajeDeAvance(),
                 entity.getLiderTecnicoId(),
                 entity.getDesarrolladorId(),

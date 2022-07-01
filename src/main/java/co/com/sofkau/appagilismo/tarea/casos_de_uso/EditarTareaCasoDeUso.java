@@ -1,6 +1,7 @@
 package co.com.sofkau.appagilismo.tarea.casos_de_uso;
 
 import co.com.sofkau.appagilismo.historiadeusuario.casos_de_uso.AsociarHistoriaDeUsuarioCasoDeUso;
+import co.com.sofkau.appagilismo.historiadeusuario.dto.HistoriaDeUsuarioDTO;
 import co.com.sofkau.appagilismo.historiadeusuario.mapper.MapperHistoriaDeUsuario;
 import co.com.sofkau.appagilismo.tarea.dto.TareaDTO;
 import co.com.sofkau.appagilismo.tarea.mapper.MapperTarea;
@@ -26,10 +27,13 @@ public class EditarTareaCasoDeUso implements EditarTareaInterface {
 
 
     @Override
-    public Mono<TareaDTO> editarTarea(TareaDTO tareaDTO) {
+    public Mono<HistoriaDeUsuarioDTO> editarTarea(TareaDTO tareaDTO) {
         return asociarHistoriaDeUsuarioCasoDeUso.apply(tareaDTO.getHistoriaUsuarioId()).flatMap(historiaDeUsuario ->
                 tareaRepositorio.save(mapperTarea.mapperATarea(tareaDTO.getTareaId()).apply(tareaDTO))
-                        .map(mapperTarea.mapperATareaDTO())
+                        .map(tarea -> {
+                            historiaDeUsuario.getTareas().add(tareaDTO);
+                            return historiaDeUsuario;
+                        })
         );
     }
 }

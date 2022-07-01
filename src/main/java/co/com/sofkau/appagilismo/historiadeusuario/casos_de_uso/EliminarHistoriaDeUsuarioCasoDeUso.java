@@ -1,9 +1,14 @@
 package co.com.sofkau.appagilismo.historiadeusuario.casos_de_uso;
 
+import co.com.sofkau.appagilismo.excepciones.ExcepcionPersonalizadaInternalServerError;
+import co.com.sofkau.appagilismo.excepciones.ExcepcionPersonalizadaNotFound;
+import co.com.sofkau.appagilismo.historiadeusuario.coleccion.HistoriaDeUsuario;
 import co.com.sofkau.appagilismo.historiadeusuario.repositorio.HistoriaDeUsuarioRepositorio;
 import co.com.sofkau.appagilismo.tarea.repositorio.TareaRepositorio;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 
 import java.util.Objects;
@@ -24,8 +29,17 @@ public class EliminarHistoriaDeUsuarioCasoDeUso implements Function<String, Mono
 
     @Override
     public Mono<Void> apply(String historiaUsuarioId) {
-        Objects.requireNonNull(historiaUsuarioId, "Id es campo obligatorio.");
+        //Mono<HistoriaDeUsuario> validacion = (repositorio.findById(historiaUsuarioId));
         return repositorio.deleteById(historiaUsuarioId)
-                .switchIfEmpty(Mono.defer(() -> tareaRepositorio.deleteByHistoriaUsuarioId(historiaUsuarioId)));
+                .switchIfEmpty(Mono.defer(() -> tareaRepositorio.deleteByHistoriaUsuarioId(historiaUsuarioId)))
+                .onErrorResume(error -> {
+                    if (error.getMessage().equals("404 NOT_FOUND")) {
+                        return Mono.error(new ExcepcionPersonalizadaNotFound("Historia de usuario no se encuentra registrada"));
+                    }
+                   /* if(validacion == null){
+                        return Mono.error(new ExcepcionPersonalizadaInternalServerError("Campos vacios"));
+                    }*/
+                    return Mono.error(new ExcepcionPersonalizadaInternalServerError("Campos vacios"));
+                });
     }
 }

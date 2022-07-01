@@ -104,4 +104,40 @@ public class HistoriaDeUsuarioDTO {
     public void setTareas(List<TareaDTO> tareas) {
         this.tareas = tareas;
     }
+
+    public void setHistoriaUsuarioId(String historiaUsuarioId) {
+        this.historiaUsuarioId = historiaUsuarioId;
+    }
+
+    public void setTituloHistoriaUsuario(String tituloHistoriaUsuario) {
+        this.tituloHistoriaUsuario = tituloHistoriaUsuario;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setEstimacion(String estimacion) {
+        this.estimacion = estimacion;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public void setPorcentajeDeAvance(Integer porcentajeDeAvance) {
+        this.porcentajeDeAvance = porcentajeDeAvance;
+    }
+
+    public void setLiderTecnicoId(String liderTecnicoId) {
+        this.liderTecnicoId = liderTecnicoId;
+    }
+
+    public void setDesarrolladorId(String desarrolladorId) {
+        this.desarrolladorId = desarrolladorId;
+    }
+
+    public void setProyectoId(String proyectoId) {
+        this.proyectoId = proyectoId;
+    }
 }

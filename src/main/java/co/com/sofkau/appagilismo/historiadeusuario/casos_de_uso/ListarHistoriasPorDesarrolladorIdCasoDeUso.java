@@ -25,10 +25,9 @@ public class ListarHistoriasPorDesarrolladorIdCasoDeUso implements Function<Stri
     private final MapperHistoriaDeUsuario mapperHistoriaDeUsuario;
 
 
-
-    public ListarHistoriasPorDesarrolladorIdCasoDeUso(HistoriaDeUsuarioRepositorio repositorio, MapperHistoriaDeUsuario mapperHistoriaDeUsuario,TareaRepositorio tareaRepositorio, MapperTarea mapperTarea){
-        this.repositorio=repositorio;
-        this.mapperHistoriaDeUsuario=mapperHistoriaDeUsuario;
+    public ListarHistoriasPorDesarrolladorIdCasoDeUso(HistoriaDeUsuarioRepositorio repositorio, MapperHistoriaDeUsuario mapperHistoriaDeUsuario, TareaRepositorio tareaRepositorio, MapperTarea mapperTarea) {
+        this.repositorio = repositorio;
+        this.mapperHistoriaDeUsuario = mapperHistoriaDeUsuario;
     }
 
     @Override

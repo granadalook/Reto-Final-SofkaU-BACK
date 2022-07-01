@@ -39,7 +39,7 @@ public class CrearUsuarioCasoDeUso implements CrearUsuarioInterface {
                                         "Datos de ingreso a la app de gestor de agilismo: ",
                                         "Su usuario es: " + usuario.getEmail() + "\n" +
                                                 "Su contraseña es: " + usuario.getPassword() + "\n" +
-                                                "Url de inicio de sesión: ");
+                                                "Url de inicio de sesión: https://cilantroagile.web.app/ ");
 
                             } catch (Exception e) {
                                 throw new RuntimeException("No se pudo enviar el correo");

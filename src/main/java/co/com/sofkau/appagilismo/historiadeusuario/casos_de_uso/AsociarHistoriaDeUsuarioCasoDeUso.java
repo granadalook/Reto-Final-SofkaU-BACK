@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Mono;
 
-import java.util.Objects;
 import java.util.function.Function;
 
+/**
+ * Clase que representa el caso de uso de asociar tareas a una historia de usuario.
+ */
 @Service
 @Validated
 public class AsociarHistoriaDeUsuarioCasoDeUso implements Function<String, Mono<HistoriaDeUsuarioDTO>> {
@@ -31,14 +33,22 @@ public class AsociarHistoriaDeUsuarioCasoDeUso implements Function<String, Mono<
         this.mapperTarea=mapperTarea;
     }
 
+    /**
+     * Metodo que permite asociar tareas a una nueva hisotria de usuario
+     * @param id the function argument
+     * @return
+     */
     @Override
     public Mono<HistoriaDeUsuarioDTO> apply(String id) {
-        //Objects.requireNonNull(id, "Id es obligatorio.");
         return repositorio.findById(id)
                 .map(mapperHistoriaDeUsuario.mapperAHistoriaDeUsuarioDTO())
                 .flatMap(mapperHistoriaDeUsuarioAgregado());
     }
 
+    /**
+     * Metodo que permite traer cada una de las tareas que estan vinculadas a una historia de usuario por su Id.
+     * @return
+     */
     private Function<HistoriaDeUsuarioDTO, Mono<HistoriaDeUsuarioDTO>> mapperHistoriaDeUsuarioAgregado(){
         return historiaDeUsuarioDTO ->
                 Mono.just(historiaDeUsuarioDTO).zipWith(

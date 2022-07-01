@@ -6,9 +6,18 @@ import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
 
+/**
+ * Clase que se encarga de mapear un proyecto de la base de datos a una respuesta de la clase
+ * dto de la aplicacion o viceversa.
+ */
 @Component
 public class MapperProyecto {
 
+    /**
+     * Metodo que se encarga de mapear un DTO de proyecto a la colección para que se guarde en la bse de datos.
+     * @param id
+     * @return Objeto de proyecto.
+     */
     public Function<ProyectoDTO, Proyecto> mapperAProyecto(String id) {
         return proyectoActualizado -> {
             var proyecto = new Proyecto();
@@ -22,6 +31,10 @@ public class MapperProyecto {
         };
     }
 
+    /**
+     * Metodo que se encarga de mapear desde la colección proyecto para transferir los datos al DTO.
+     * @return Objeto ProyectoDTO
+     */
     public Function<Proyecto, ProyectoDTO> mapperAProyectoDTO() {
         return proyectoDto -> new ProyectoDTO(
                 proyectoDto.getProyectoId(),

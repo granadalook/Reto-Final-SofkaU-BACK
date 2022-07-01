@@ -4,7 +4,7 @@ import co.com.sofkau.appagilismo.usuario.coleccion.Usuario;
 import co.com.sofkau.appagilismo.usuario.dto.UsuarioDTO;
 import co.com.sofkau.appagilismo.usuario.mapper.MapperUsuario;
 import co.com.sofkau.appagilismo.usuario.repositorio.UsuarioRepositorio;
-import co.com.sofkau.appagilismo.usuario.utilidades.EnviarMail;
+import co.com.sofkau.appagilismo.utilidades.EnviarMail;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -14,7 +14,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;

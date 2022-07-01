@@ -1,7 +1,6 @@
 package co.com.sofkau.appagilismo.proyecto.rutas;
 
 import co.com.sofkau.appagilismo.proyecto.casos_de_uso.AsignarProyectoAUsuarioCasoDeUso;
-import co.com.sofkau.appagilismo.proyecto.dto.ProyectoDTO;
 import co.com.sofkau.appagilismo.usuario.dto.UsuarioDTO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +10,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
 import java.util.function.Function;
+
 import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;

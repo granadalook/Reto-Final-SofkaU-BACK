@@ -2,18 +2,16 @@ package co.com.sofkau.appagilismo.tarea.casos_de_uso;
 
 import co.com.sofkau.appagilismo.historiadeusuario.casos_de_uso.AsociarHistoriaDeUsuarioCasoDeUso;
 import co.com.sofkau.appagilismo.historiadeusuario.dto.HistoriaDeUsuarioDTO;
-import co.com.sofkau.appagilismo.historiadeusuario.repositorio.HistoriaDeUsuarioRepositorio;
 import co.com.sofkau.appagilismo.tarea.dto.TareaDTO;
 import co.com.sofkau.appagilismo.tarea.mapper.MapperTarea;
 import co.com.sofkau.appagilismo.tarea.repositorio.TareaRepositorio;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Mono;
 
-import java.util.Objects;
-
-
+/**
+ * Clase que representa el caso de uso de crear una tarea.
+ */
 @Service
 @Validated
 public class CrearTareaCasoDeUso implements CrearTareaInterface {
@@ -28,6 +26,11 @@ public class CrearTareaCasoDeUso implements CrearTareaInterface {
         this.asociarHistoriaDeUsuarioCasoDeUso=asociarHistoriaDeUsuarioCasoDeUso;
     }
 
+    /**
+     * Metodo que permite crear una nueva tarea.
+     * @param tareaDTO
+     * @return Objeto de TareaDTO
+     */
     @Override
     public Mono<HistoriaDeUsuarioDTO> crearTarea(TareaDTO tareaDTO) {
         //Objects.requireNonNull(tareaDTO.getHistoriaUsuarioId(),"Id de tarea es obligatorio.");

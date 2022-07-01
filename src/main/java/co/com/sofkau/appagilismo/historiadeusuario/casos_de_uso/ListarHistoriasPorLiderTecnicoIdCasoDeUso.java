@@ -9,6 +9,9 @@ import reactor.core.publisher.Flux;
 
 import java.util.function.Function;
 
+/**
+ * Clase que representa el caso de uso de traer una lista de las historias de usuario vinculadas aun lider tecnico especifico.
+ */
 @Service
 @Validated
 public class ListarHistoriasPorLiderTecnicoIdCasoDeUso implements Function<String, Flux<HistoriaDeUsuarioDTO>>{
@@ -22,7 +25,11 @@ public class ListarHistoriasPorLiderTecnicoIdCasoDeUso implements Function<Strin
         this.mapperHistoriaDeUsuario=mapperHistoriaDeUsuario;
     }
 
-
+    /**
+     * Metodo que permite traer una lista de las hisotrias de usuario vinculadas a un lider tecnico especifico.
+     * @param liderTecnicoId the function argument
+     * @return
+     */
     @Override
     public Flux<HistoriaDeUsuarioDTO> apply(String liderTecnicoId) {
         return repositorio.findAllByLiderTecnicoId(liderTecnicoId)

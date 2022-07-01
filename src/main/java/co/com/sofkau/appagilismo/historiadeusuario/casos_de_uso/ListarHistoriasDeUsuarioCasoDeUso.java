@@ -13,6 +13,9 @@ import reactor.core.publisher.Mono;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+/**
+ * Clase que representa el caso de uso de traer una lista de historias de usuarios.
+ */
 @Service
 @Validated
 public class ListarHistoriasDeUsuarioCasoDeUso implements Supplier<Flux<HistoriaDeUsuarioDTO>> {
@@ -32,6 +35,10 @@ public class ListarHistoriasDeUsuarioCasoDeUso implements Supplier<Flux<Historia
         this.mapperTarea=mapperTarea;
     }
 
+    /**
+     * Metodo que permite traer una lista de las hisotrias de usuario con sus respectivas lista de tareas.
+     * @return
+     */
     @Override
     public Flux<HistoriaDeUsuarioDTO> get() {
         return repositorio.findAll()
@@ -39,6 +46,10 @@ public class ListarHistoriasDeUsuarioCasoDeUso implements Supplier<Flux<Historia
                 .flatMap(mapperHistoriaDeUsuarioAgregado());
     }
 
+    /**
+     * Metodo que permite traer la lista de las tareas vinculadas a una historia de usuario.
+     * @return
+     */
     private Function<HistoriaDeUsuarioDTO, Mono<HistoriaDeUsuarioDTO>> mapperHistoriaDeUsuarioAgregado(){
         return historiaDeUsuarioDTO ->
                 Mono.just(historiaDeUsuarioDTO).zipWith(

@@ -5,8 +5,16 @@ import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
 
+/**
+ * Interfaz funcional de crear una historia de usuario.
+ */
 @FunctionalInterface
 public interface CrearHistoriaDeUsuarioInterface {
 
+    /**
+     * Metodo que permite crear una historia de usuario.
+     * @param historiaDeUsuarioDTO
+     * @return
+     */
     Mono<HistoriaDeUsuarioDTO> crearHistoriaDeUsuario(@Valid HistoriaDeUsuarioDTO historiaDeUsuarioDTO);
 }

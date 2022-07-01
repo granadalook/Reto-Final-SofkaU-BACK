@@ -1,8 +1,11 @@
 package co.com.sofkau.appagilismo.tarea.dto;
 
 import javax.validation.constraints.NotBlank;
-import java.util.List;
 
+/**
+ * TareaDTO class.
+ * DTO para la colección Tarea
+ */
 public class TareaDTO {
 
     private String tareaId;

@@ -12,6 +12,9 @@ import reactor.core.publisher.Mono;
 
 import java.util.function.Function;
 
+/**
+ * Clase que representa el caso de uso de crear una historia de usuario.
+ */
 @Service
 @Validated
 public class CrearHistoriaDeUsuarioCasoDeUso implements CrearHistoriaDeUsuarioInterface{
@@ -31,11 +34,15 @@ public class CrearHistoriaDeUsuarioCasoDeUso implements CrearHistoriaDeUsuarioIn
         this.mapperTarea=mapperTarea;
     }
 
+    /**
+     * Metodo que permite crear una nueva hisotria de usuario
+     * @param historiaDeUsuarioDTO
+     * @return Objeto de Historia de usuario
+     */
     @Override
     public Mono<HistoriaDeUsuarioDTO> crearHistoriaDeUsuario(HistoriaDeUsuarioDTO historiaDeUsuarioDTO){
        return repositorio
                 .save(mapperHistoriaDeUsuario.mapperAHistoriaDeUsuario(null).apply(historiaDeUsuarioDTO))
                .map(mapperHistoriaDeUsuario.mapperAHistoriaDeUsuarioDTO());
     }
-
 }

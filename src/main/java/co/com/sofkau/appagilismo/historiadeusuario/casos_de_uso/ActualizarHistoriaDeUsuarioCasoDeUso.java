@@ -1,6 +1,5 @@
 package co.com.sofkau.appagilismo.historiadeusuario.casos_de_uso;
 
-import co.com.sofkau.appagilismo.historiadeusuario.coleccion.HistoriaDeUsuario;
 import co.com.sofkau.appagilismo.historiadeusuario.dto.HistoriaDeUsuarioDTO;
 import co.com.sofkau.appagilismo.historiadeusuario.mapper.MapperHistoriaDeUsuario;
 import co.com.sofkau.appagilismo.historiadeusuario.repositorio.HistoriaDeUsuarioRepositorio;
@@ -10,9 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Mono;
 
-import java.util.Objects;
 import java.util.function.Function;
 
+/**
+ * Clase que representa el caso de uso de actualizar una historia de usuario.
+ */
 @Service
 @Validated
 public class ActualizarHistoriaDeUsuarioCasoDeUso implements CrearHistoriaDeUsuarioInterface {
@@ -32,6 +33,11 @@ public class ActualizarHistoriaDeUsuarioCasoDeUso implements CrearHistoriaDeUsua
         this.mapperTarea=mapperTarea;
     }
 
+    /**
+     * Metodo que permite actualizar una hisotria de usuario.
+     * @param historiaDeUsuarioDTO
+     * @return Objeto de historia de usuario.
+     */
     @Override
     public Mono<HistoriaDeUsuarioDTO> crearHistoriaDeUsuario(HistoriaDeUsuarioDTO historiaDeUsuarioDTO) {
         //Objects.requireNonNull(historiaDeUsuarioDTO.getHistoriaUsuarioId(), "Id de la Historia De Usuario es requerido.");
@@ -40,6 +46,10 @@ public class ActualizarHistoriaDeUsuarioCasoDeUso implements CrearHistoriaDeUsua
                 .flatMap(mapperHistoriaDeUsuarioActualizado());
     }
 
+    /**
+     * Metodo que permite traer la lista de tareas que estan vinculadas a una historia de usuario.
+     * @return Objeto de historia de usuario con la lista de tareas vinculadas a ella.
+     */
     private Function<HistoriaDeUsuarioDTO, Mono<HistoriaDeUsuarioDTO>> mapperHistoriaDeUsuarioActualizado(){
         return historiaDeUsuarioDTO ->
                 Mono.just(historiaDeUsuarioDTO).zipWith(

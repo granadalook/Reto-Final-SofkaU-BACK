@@ -15,9 +15,17 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
+/**
+ * Clase que permite configurar la ruta de salida para crear una tarea.
+ */
 @Configuration
 public class CrearTareaRuta {
 
+    /**
+     * Metodo que define el entrypoint del POST para crear una nueva tarea de la API.
+     * @param crearTareaCasoDeUso
+     * @return Respuesta de la API con un Body de tipo TareaDTO y un codigo de status.
+     */
     @Bean
     public RouterFunction<ServerResponse> crearTarea(CrearTareaCasoDeUso crearTareaCasoDeUso){
         Function<TareaDTO, Mono<ServerResponse>> crearTarea = TareaDTO -> crearTareaCasoDeUso.crearTarea(TareaDTO)

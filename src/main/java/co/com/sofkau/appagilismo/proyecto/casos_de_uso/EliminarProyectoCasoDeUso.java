@@ -9,6 +9,9 @@ import reactor.core.publisher.Mono;
 
 import java.util.Objects;
 
+/**
+ * Clase que representa el caso de uso de eliminar un proyecto por su Id.
+ */
 @Service
 @Validated
 public class EliminarProyectoCasoDeUso implements EliminarCasoDeUsoInterface {
@@ -23,6 +26,11 @@ public class EliminarProyectoCasoDeUso implements EliminarCasoDeUsoInterface {
         this.mapperProyecto = mapperProyecto;
     }
 
+    /**
+     * Metodo que permite eliminar un nuevo proyecto por su Id.
+     * @param idProyecto
+     * @return Mono<Void>
+     */
     @Override
     public Mono<Void> deleteProyectoById(String idProyecto) {
         Objects.requireNonNull(idProyecto, "Id es requerido");

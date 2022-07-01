@@ -1,15 +1,12 @@
 package co.com.sofkau.appagilismo.usuario.casos_de_uso;
 
-import co.com.sofkau.appagilismo.usuario.coleccion.Usuario;
 import co.com.sofkau.appagilismo.usuario.dto.UsuarioDTO;
 import co.com.sofkau.appagilismo.usuario.dto.UsuarioLogin;
 import co.com.sofkau.appagilismo.usuario.repositorio.UsuarioRepositorio;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 

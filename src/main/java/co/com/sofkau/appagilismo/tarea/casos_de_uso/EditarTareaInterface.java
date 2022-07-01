@@ -8,8 +8,16 @@ import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
 
+/**
+ * Interfaz funcional de editar tarea.
+ */
 @FunctionalInterface
 public interface EditarTareaInterface {
-    Mono<HistoriaDeUsuarioDTO> editarTarea (@Valid TareaDTO tareaDTO);
 
+    /**
+     * Metodo que permite editar una tarea.
+     * @param tareaDTO
+     * @return Objeto de Historia de usuario
+     */
+    Mono<HistoriaDeUsuarioDTO> editarTarea (@Valid TareaDTO tareaDTO);
 }

@@ -1,20 +1,6 @@
 package co.com.sofkau.appagilismo.historiadeusuario.casos_de_uso;
 
-import co.com.sofkau.appagilismo.historiadeusuario.coleccion.HistoriaDeUsuario;
-import co.com.sofkau.appagilismo.historiadeusuario.dto.HistoriaDeUsuarioDTO;
-import co.com.sofkau.appagilismo.historiadeusuario.mapper.MapperHistoriaDeUsuario;
-import co.com.sofkau.appagilismo.historiadeusuario.repositorio.HistoriaDeUsuarioRepositorio;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import reactor.core.publisher.Mono;
-import reactor.test.StepVerifier;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 @SpringBootTest
 class CrearHistoriaDeUsuarioCasoDeUsoTest {

@@ -4,8 +4,12 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
-import java.util.List;
 
+/**
+ * Tarea class.
+ * Clase que representa a la colección Tarea creada en la base de datos.
+ * @author 100 de cilantro
+ */
 @Document(collection = "tareas")
 public class Tarea {
     @Id
@@ -27,8 +31,6 @@ public class Tarea {
 
     @NotBlank
     private String historiaUsuarioId;
-
-
 
     public String getTareaId() {
         return tareaId;

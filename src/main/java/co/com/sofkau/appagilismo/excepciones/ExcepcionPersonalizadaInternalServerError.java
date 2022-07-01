@@ -12,4 +12,3 @@ public class ExcepcionPersonalizadaInternalServerError extends RuntimeException{
         super(message);
     }
 }
-

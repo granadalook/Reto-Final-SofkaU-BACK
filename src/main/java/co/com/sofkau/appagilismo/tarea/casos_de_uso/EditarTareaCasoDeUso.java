@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+/**
+ * Clase que representa el caso de uso de editar una tarea.
+ */
 @Service
 @Validated
 public class EditarTareaCasoDeUso implements EditarTareaInterface {
@@ -26,7 +30,11 @@ public class EditarTareaCasoDeUso implements EditarTareaInterface {
         this.asociarHistoriaDeUsuarioCasoDeUso = asociarHistoriaDeUsuarioCasoDeUso;
     }
 
-
+    /**
+     * Metodo que permite editar una nueva tarea.
+     * @param tareaDTO
+     * @return Objeto de Historia de usuario.
+     */
     @Override
     public Mono<HistoriaDeUsuarioDTO> editarTarea(TareaDTO tareaDTO) {
         return asociarHistoriaDeUsuarioCasoDeUso.apply(tareaDTO.getHistoriaUsuarioId())
@@ -39,18 +47,5 @@ public class EditarTareaCasoDeUso implements EditarTareaInterface {
                                     return historiadeUsuario;
                                 })
                 );
-
     }
 }
-       /*
-return getUseCase.apply(answerDTO.getQuestionId())
-                .flatMap(question ->
-                        answerRepository.save(mapperUtilsAnswer.mapperToAnswer().apply(answerDTO))
-                                .map(answer -> {
-                                    question.getAnswers().add(
-                                            mapperUtilsAnswer.mapEntityToAnswer().apply(answer)
-                                    );
-                                    return question;
-                                })
-                );
-         */

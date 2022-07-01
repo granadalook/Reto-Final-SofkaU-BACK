@@ -9,6 +9,9 @@ import reactor.core.publisher.Mono;
 
 import java.util.function.Function;
 
+/**
+ * Clase que representa el caso de uso de traer un proyecto por su Id.
+ */
 @Service
 @Validated
 public class TraerProyectoPorIdcasoDeUso implements Function<String, Mono<ProyectoDTO>> {
@@ -21,6 +24,11 @@ public class TraerProyectoPorIdcasoDeUso implements Function<String, Mono<Proyec
         this.mapperProyecto = mapperProyecto;
     }
 
+    /**
+     * Metodo que permite traer un proyecto por su Id.
+     * @param idProyecto the function argument
+     * @return Objeto de ProyectoDTO
+     */
     @Override
     public Mono<ProyectoDTO> apply(String idProyecto) {
         return repositorio.findById(idProyecto)

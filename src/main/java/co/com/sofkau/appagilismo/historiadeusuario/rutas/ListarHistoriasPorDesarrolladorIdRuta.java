@@ -1,7 +1,6 @@
 package co.com.sofkau.appagilismo.historiadeusuario.rutas;
 
 import co.com.sofkau.appagilismo.historiadeusuario.casos_de_uso.ListarHistoriasPorDesarrolladorIdCasoDeUso;
-import co.com.sofkau.appagilismo.historiadeusuario.casos_de_uso.ListarHistoriasPorLiderTecnicoIdCasoDeUso;
 import co.com.sofkau.appagilismo.historiadeusuario.dto.HistoriaDeUsuarioDTO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

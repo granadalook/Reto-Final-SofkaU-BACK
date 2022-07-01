@@ -7,6 +7,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
+/**
+ * HistoriaDeUsuario class.
+ * Clase que representa a la colección HistoriaDeUsuario creada en la base de datos.
+ * @author 100 de cilantro
+ */
 @Document(collection = "historiadeusuario")
 public class HistoriaDeUsuario {
     @Id

@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Mono;
 
+/**
+ * Clase que representa el caso de uso de actualizar un proyecto.
+ */
 @Service
 @Validated
 public class ActualizarProyectoCasoDeUso implements CrearProyectoInterface {
@@ -19,6 +22,11 @@ public class ActualizarProyectoCasoDeUso implements CrearProyectoInterface {
         this.mapperProyecto = mapperProyecto;
     }
 
+    /**
+     * Metodo que permite actualizar un proyecto.
+     * @param proyectoDTO
+     * @return
+     */
     @Override
     public Mono<ProyectoDTO> guardarProyecto(ProyectoDTO proyectoDTO) {
         return repositorio

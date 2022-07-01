@@ -31,7 +31,7 @@ public class EliminarHistoriaDeUsuarioCasoDeUso implements Function<String, Mono
     public Mono<Void> apply(String historiaUsuarioId) {
         //Mono<HistoriaDeUsuario> validacion = (repositorio.findById(historiaUsuarioId));
         return repositorio.deleteById(historiaUsuarioId)
-                .switchIfEmpty(Mono.defer(() -> tareaRepositorio.deleteByHistoriaUsuarioId(historiaUsuarioId)))
+                .switchIfEmpty(Mono.defer(() -> tareaRepositorio.deleteByTareaId(historiaUsuarioId)))
                 .onErrorResume(error -> {
                     if (error.getMessage().equals("404 NOT_FOUND")) {
                         return Mono.error(new ExcepcionPersonalizadaNotFound("Historia de usuario no se encuentra registrada"));

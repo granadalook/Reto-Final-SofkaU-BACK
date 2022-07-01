@@ -17,9 +17,6 @@ public class HistoriaDeUsuarioDTO {
     @NotBlank
     private String estimacion;
 
-
-    private String estado;
-
     private Integer porcentajeDeAvance;
 
     @NotBlank
@@ -36,12 +33,11 @@ public class HistoriaDeUsuarioDTO {
     public HistoriaDeUsuarioDTO() {
     }
 
-    public HistoriaDeUsuarioDTO(String historiaUsuarioId,String tituloHistoriaUsuario, String descripcion, String estimacion, String estado, Integer porcentajeDeAvance,  String liderTecnicoId, String desarrolladorId , String proyectoId) {
+    public HistoriaDeUsuarioDTO(String historiaUsuarioId,String tituloHistoriaUsuario, String descripcion, String estimacion,  Integer porcentajeDeAvance,  String liderTecnicoId, String desarrolladorId , String proyectoId) {
         this.historiaUsuarioId = historiaUsuarioId;
         this.tituloHistoriaUsuario=tituloHistoriaUsuario;
         this.descripcion = descripcion;
         this.estimacion=estimacion;
-        this.estado=estado;
         this.porcentajeDeAvance=porcentajeDeAvance;
         this.liderTecnicoId=liderTecnicoId;
         this.desarrolladorId=desarrolladorId;
@@ -49,10 +45,9 @@ public class HistoriaDeUsuarioDTO {
 
     }
 
-    public HistoriaDeUsuarioDTO(String tituloHistoriaUsuario, String estimacion, String estado, String liderTecnicoId, String desarrolladorId, String proyectoId) {
+    public HistoriaDeUsuarioDTO(String tituloHistoriaUsuario, String estimacion, String liderTecnicoId, String desarrolladorId, String proyectoId) {
         this.tituloHistoriaUsuario=tituloHistoriaUsuario;
         this.estimacion = estimacion;
-        this.estado=estado;
         this.liderTecnicoId=liderTecnicoId;
         this.desarrolladorId=desarrolladorId;
         this.proyectoId=proyectoId;
@@ -73,10 +68,6 @@ public class HistoriaDeUsuarioDTO {
 
     public String getEstimacion() {
         return estimacion;
-    }
-
-    public String getEstado() {
-        return estado;
     }
 
     public Integer getPorcentajeDeAvance() {

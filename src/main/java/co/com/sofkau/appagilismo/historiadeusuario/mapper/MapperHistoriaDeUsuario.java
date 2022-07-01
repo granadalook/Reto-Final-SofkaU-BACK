@@ -31,7 +31,6 @@ public class MapperHistoriaDeUsuario {
             historiaDeUsuario.setTituloHistoriaUsuario(updateHistoriaDeUsuario.getTituloHistoriaUsuario());
             historiaDeUsuario.setDescripcion(updateHistoriaDeUsuario.getDescripcion());
             historiaDeUsuario.setEstimacion(updateHistoriaDeUsuario.getEstimacion());
-            historiaDeUsuario.setEstado(updateHistoriaDeUsuario.getEstado());
             historiaDeUsuario.setPorcentajeDeAvance(calcularPorcentajeDeAvance(updateHistoriaDeUsuario));
             historiaDeUsuario.setLiderTecnicoId(updateHistoriaDeUsuario.getLiderTecnicoId());
             historiaDeUsuario.setDesarrolladorId(updateHistoriaDeUsuario.getDesarrolladorId());
@@ -45,7 +44,7 @@ public class MapperHistoriaDeUsuario {
             return tarea.isCompleta()==true;
         }).count());
 
-        Double total = Double.valueOf(historiaDeUsuarioDTO.getTareas().size());
+        Double total = (Double.valueOf(historiaDeUsuarioDTO.getTareas().size())-1);
 
         return Math.toIntExact((long) ((completas/total)*100));
     }
@@ -56,7 +55,6 @@ public class MapperHistoriaDeUsuario {
                 entity.getTituloHistoriaUsuario(),
                 entity.getDescripcion(),
                 entity.getEstimacion(),
-                entity.getEstado(),
                 entity.getPorcentajeDeAvance(),
                 entity.getLiderTecnicoId(),
                 entity.getDesarrolladorId(),

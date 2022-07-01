@@ -1,10 +1,11 @@
-package co.com.sofkau.appagilismo.historiadeusuario.casos_de_uso;
+package co.com.sofkau.appagilismo.tarea.casos_de_uso;
 
 import co.com.sofkau.appagilismo.excepciones.ExcepcionPersonalizadaInternalServerError;
 import co.com.sofkau.appagilismo.excepciones.ExcepcionPersonalizadaNotFound;
 import co.com.sofkau.appagilismo.historiadeusuario.dto.HistoriaDeUsuarioDTO;
 import co.com.sofkau.appagilismo.historiadeusuario.mapper.MapperHistoriaDeUsuario;
 import co.com.sofkau.appagilismo.historiadeusuario.repositorio.HistoriaDeUsuarioRepositorio;
+import co.com.sofkau.appagilismo.tarea.dto.TareaDTO;
 import co.com.sofkau.appagilismo.tarea.mapper.MapperTarea;
 import co.com.sofkau.appagilismo.tarea.repositorio.TareaRepositorio;
 import org.springframework.http.HttpStatus;
@@ -18,27 +19,26 @@ import java.util.function.Function;
 
 @Service
 @Validated
-public class ListarHistoriasPorProyectoIdCasoDeUso implements Function<String, Flux<HistoriaDeUsuarioDTO>> {
+public class ListarTareaPorTareaIdCasoDeUso implements Function<String, Mono<TareaDTO>> {
 
-    private final HistoriaDeUsuarioRepositorio historiaDeUsuarioRepositorio;
+    private final MapperTarea mapperTarea;
 
-    private final MapperHistoriaDeUsuario mapperHistoriaDeUsuario;
+    private final TareaRepositorio tareaRepositorio;
 
 
-    public ListarHistoriasPorProyectoIdCasoDeUso(HistoriaDeUsuarioRepositorio historiaDeUsuarioRepositorio, MapperHistoriaDeUsuario mapperHistoriaDeUsuario, TareaRepositorio tareaRepositorio, MapperTarea mapperTarea){
-        this.historiaDeUsuarioRepositorio=historiaDeUsuarioRepositorio;
-        this.mapperHistoriaDeUsuario=mapperHistoriaDeUsuario;
+    public ListarTareaPorTareaIdCasoDeUso(MapperTarea mapperTarea, TareaRepositorio tareaRepositorio){
+        this.mapperTarea=mapperTarea;
+        this.tareaRepositorio=tareaRepositorio;
     }
 
     @Override
-    public Flux<HistoriaDeUsuarioDTO> apply(String proyectoId) {
-        return historiaDeUsuarioRepositorio.findAllByProyectoId(proyectoId)
-                .map(mapperHistoriaDeUsuario.mapperAHistoriaDeUsuarioDTO())
-                .flatMap(mapperHistoriaDeUsuario.mapperHistoriaDeUsuarioActualizada())
+    public Mono<TareaDTO> apply(String tareaId) {
+        return tareaRepositorio.findById(tareaId)
+                .map(mapperTarea.mapperATareaDTO())
                 .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND)))
                 .onErrorResume(error -> {
                     if (error.getMessage().equals("404 NOT_FOUND")) {
-                        return Mono.error(new ExcepcionPersonalizadaNotFound("Proyecto no se encuentra registrado"));
+                        return Mono.error(new ExcepcionPersonalizadaNotFound("Tarea no se encuentra registrada"));
                     }
                     return Mono.error(new ExcepcionPersonalizadaInternalServerError("Campos vacios"));
                 });
